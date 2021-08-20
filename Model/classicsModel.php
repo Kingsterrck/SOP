@@ -1,32 +1,56 @@
 <?php
-    include_once "config.php";
+    include_once "../config.php";
 function classicsSelect() {
     if ($GLOBALS["conn"] -> connect_error) {
         die("failed".$GLOBALS["conn"]->connect_error);
     } else {
         echo "success";
-        $sql = "select author, title, category from classics";
-        $result = $GLOBALS["conn"]->query($sql);
-        if ($GLOBALS["conn"]->error){
-            return [1,$GLOBALS["conn"]->error];
+
+        $stmt = $GLOBALS["conn"]->prepare("select author, title, category from classics");
+        $stmt->execute();
+        // $result = $GLOBALS["conn"]->query($sql);
+
+        if ($stmt->error){
+            error_log(1);
+            return [1,$stmt->error];
         }
         else{
-            return [2,$result];
+            error_log(2);
+
+            return [2,$stmt->get_result()];
         }
         // $GLOBALS["conn"] ->close();
     }
 }
-function classicsInsert() {
+function classicsInsert($author, $title, $category, $year, $isbn) {
+    $p_author="";
+    $p_title="";
+    $p_category="";
+    $p_year="";
+    $p_isbn="";
     if ($GLOBALS["conn"] -> connect_error) {
         die("failed".$GLOBALS["conn"]->connect_error);
     } else {
         echo "success";
-        $sql = "insert into classics(author, title, category,year,isbn) values('Lin Manuel Miranda','In The Heights','Settings','2021','234567898543')";
-        $result = $GLOBALS["conn"]->query($sql);
-        if ($GLOBALS["conn"] -> affected_rows > 0) {
-            echo "success";
+        //$sql = "insert into classics(author, title, category,year,isbn) values('$author','$title','$category','$year','$isbn')";
+
+        $stmt = $GLOBALS["conn"]->prepare("insert into classics(author, title, category,year,isbn) values(?,?,?,?,?)");
+        $stmt->bind_param("sssis",$p_author,$p_title,$p_category,$p_year,$p_isbn);
+
+        $p_author = $author;
+        $p_title = $title;
+        $p_category = $category;
+        $p_year = (int)$year;
+        $p_isbn = $isbn;
+
+        $stmt->execute();
+
+
+        // $result = $GLOBALS["conn"]->query($sql);
+        if ($stmt -> affected_rows > 0) {
+            return [2,$stmt->affected_rows];
         } else {
-            die("failed".$GLOBALS["conn"]->error);
+            return [1,$stmt->error];
         }
         // $GLOBALS["conn"] ->close();
     }
