@@ -1,0 +1,121 @@
+* {
+    margin:0;
+    padding: 0;
+    border: none;
+    font-family: "Segoe UI";
+}
+h1 {
+    color: gold;
+}
+body {
+    background: url("../imgsrc/volleyballGame.png") center fixed;
+}
+#header {
+    width:100%;
+    height:70px;
+    background-color: #323232;
+    border-bottom: gold solid 4px;
+    position:fixed;
+    top:0;
+    overflow: hidden;
+    zoom:1;
+}
+#headLeft {
+    margin-left: 10%;
+    width: auto;
+    float: left;
+}
+#headLeft ul {
+    overflow: hidden;
+    zoom:1;
+    list-style: none;
+}
+.headItems {
+    float: left;
+    width: 75px;
+    margin-top:20px;
+}
+.headItems a {
+    text-decoration: none;
+    color:white;
+    font-size: 17px;
+}
+#headLeft a:hover {
+    color: gold;
+}
+#headmid {
+    float:left;
+    width: 130px; /* can be changed depending on the size of the font */
+    margin: 12px 120px;
+}
+#headmid a {
+    text-decoration: none;
+}
+#headright {
+    float:right;
+    margin-right:10%;
+}
+#headright ul {
+    overflow: hidden;
+    zoom:1;
+    list-style: none;
+}
+#headright li {
+    float:left;
+}
+#headerSearchBox {
+    display: inline-block;
+    overflow: hidden;
+    zoom: 1;
+    background-color: #232323;
+    width:250px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+#headerSearchBox img {
+    height:35px;
+    float: left;
+}
+#headerSearchBox input {
+    background: none;
+    float: left;
+    border:none;
+    font-size: 17px;
+    height: 31px;
+    margin-top:2px;
+    outline:none;
+    color: white;
+}
+#mainBox {
+    width: 100%;
+    /* background: url('../imgsrc/volleyballGame.png'); */
+}
+.signUpUI {
+    border-radius: 10px;
+    background-color: #323232;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.signUpUI h1 {
+    margin: 10px auto;
+}
+.signUpUI input {
+    position:relative;
+    height: 50px;
+    background-color: #232323;
+    outline: none;
+    border-radius: 5px;
+    color:white;
+    margin: 8px auto;
+}
+#signUpFirstStep input[value="注册"] {
+    margin-top: 20px;
+    background-color: gold;
+    color: black;
+    font-size: large;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/sign_up.css">
+</head>
+<body>
+    <div id="header">
+        <div id="headLeft">
+            <ul>
+                <li class="headItems" id="headLeftItem1"><a href="#">运动</a></li>
+                <li class="headItems"><a href="#">战队</a></li>
+                <li class="headItems"><a href="#">比赛</a></li>
+                <li class="headItems"><a href="#">直播</a></li>
+                <li class="headItems"><a href="#">ENG</a></li>
+            </ul>
+        </div>
+        <div id="headmid">
+            <h1><a>赛事系统</a></h1>
+        </div>
+        <div id="headright">
+            <ul>
+                <li class="headItems"><a href="#">登录</a></li>
+                <li class="headItems" style="color: gold"><a href="#">注册</a></li>
+                <li>
+                    <div id="headerSearchBox">
+                        <img src="imgsrc/searchIcon.png">
+                        <input type="text" placeholder="搜索">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="mainBox">
+        <div class="signUpUI" id="signUpFirstStep">
+            <h1>欢迎</h1>
+            <form>
+                <input class="loginBox" type="email" placeholder=" 邮箱">
+                <input class="loginBox" type="password" placeholder=" 密码">
+                <input class="loginBox" type="button" value="注册" onclick="changeToSecond()">
+                <input class="loginBox" type="button" value="已经有账号？登录">
+            </form>
+        </div>
+        <div class="signUpUI" id="signUpSecondStep">
+            <h1>欢迎</h1>
+            <p>完善你的个人信息</p>
+            <form>
+                <input type="text" placeholder="姓名">
+                <input type="number" placeholder="手机号码">
+            </form>
+        </div>
+    </div>
+<script src="js/sign_up.js"></script>
+</body>
+</html>
