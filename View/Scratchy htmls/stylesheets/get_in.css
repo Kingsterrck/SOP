@@ -119,3 +119,6 @@ body {
     color: black;
     font-size: large;
 }
+#signUpSuccess {
+ /*   display: none;*/
+}
