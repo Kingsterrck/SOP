@@ -1,30 +1,25 @@
 //get client's window height and width
 const window_height = window.innerHeight;
-const window_width = window.innerWidth;
+var window_width = window.innerWidth;
 const UIList = document.getElementsByClassName("signUpUI");
 var UICounter = 1;
 var signUpFirstStep = document.getElementById("signUpFirstStep");
 var signUpSecondStep = document.getElementById("signUpSuccess");
+var headLeft = document.getElementById("headLeft");
+var headMid = document.getElementById("headmid");
+var headRight = document.getElementById("headright");
+var menuIcon = document.getElementById("menuButton");
 
-defaultSetup()
-function defaultSetup(){
-    //document.getElementById("mainBox").style.height = window_height - 70 + "px"
-    signUpFirstStep.style.width = 0.18 * window_width + "px";
-    signUpSecondStep.style.width = 0.23 * window_width + "px";
-    const signUpFirstWidth = signUpFirstStep.style.width;
-    let signUpBoxList = document.getElementsByClassName("loginBox");
-    let shortSignUpBoxList = document.getElementsByClassName("shortLoginBox");
-    for (i=0;i<signUpBoxList.length;i++) {
-        signUpBoxList[i].style.width=signUpFirstWidth;   // set the width of things in the login box
-    }
-    for (i=0;i<shortSignUpBoxList.length;i++) {
-        shortSignUpBoxList[i].style.width = 0.09 * window_width + "px";
-    }
-    signUpFirstStep.style.width = 0.23 * window_width + "px";
-    for (i=0;i<UIList.length;i++) { // let all the UI blocks be invisible
-        UIList[i].style.display="none";
-    }
-    signUpFirstStep.style.display="block";
+
+function centerTitle(){ //edit the margin of the title
+    var window_width = window.innerWidth;
+    var leftWidth = document.getElementById("headLeft").clientWidth+document.getElementById("headLeft").clientWidth;
+    console.log(leftWidth);
+    var rightWidth = document.getElementById("headright").style.width+document.getElementById("headright").style.marginRight;
+    //console.log("right: " + rightWidth);
+    var availableMargin = window_width - leftWidth - rightWidth;
+    //console.log("sub: " + availableMargin);
+    var difference = leftWidth - rightWidth; // THIS IS NOT WORKING BECAUSE YOU CANNOT SUBSTRACT STRINGS
 }
 
 function changeUI() {
@@ -42,4 +37,14 @@ function changeToSecond() {
         UIList[i].style.display = "none";
     }
     document.getElementById("signUpSuccess").style.display="block";
+}
+function openNav() {
+    var overlay = document.getElementById("fullscreenMenu");
+    console.log(overlay);
+    overlay.style.height = "100%";
+}
+
+function closeNav() {
+    var overlay = document.getElementById("fullscreenMenu");
+    overlay.style.height = "0%";
 }
