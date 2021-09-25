@@ -11,7 +11,7 @@
 <body>
 <div id="header">
     <div>
-        <img id="menuButton" src="imgsrc/menu.png" onclick="openNav()">
+        <img id="menuButton" src="imgsrc/icons/menu.png" onclick="openNav()">
     </div>
     <div id="headLeft">
         <ul>
@@ -31,7 +31,7 @@
             <li class="headItems"><a href="#" style="color: gold">注册</a></li>
             <li>
                 <div id="headerSearchBox">
-                    <img src="imgsrc/searchIcon.png">
+                    <img src="imgsrc/icons/searchIcon.png">
                     <input type="text" placeholder="搜索">
                 </div>
             </li>

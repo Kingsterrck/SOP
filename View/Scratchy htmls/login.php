@@ -26,7 +26,7 @@
             <li class="headItems"><a href="sign_up.php">注册</a></li>
             <li>
                 <div id="headerSearchBox">
-                    <img src="imgsrc/searchIcon.png">
+                    <img src="imgsrc/icons/searchIcon.png">
                     <input type="text" placeholder="搜索">
                 </div>
             </li>
