@@ -1,0 +1,13 @@
+#basketball {
+    background: url("../imgsrc/basketball.png") center;
+    background-size: cover;
+}
+#volleyball {
+    background: url("../imgsrc/volleyball.png") center;
+    background-size: cover;
+    background-position-y: 0;
+}
+#soccer {
+    background: url("../imgsrc/soccer.png") center bottom;
+    background-size: 150%;
+}

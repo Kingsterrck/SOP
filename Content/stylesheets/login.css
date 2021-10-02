@@ -1,0 +1,12 @@
+form div a {
+    float: right;
+    text-align: right;
+    color: gold;
+    text-decoration: gold underline;
+    margin-right: 23px;
+}
+.loginBox[placeholder="登录"] {
+    background-color: gold;
+    color: black;
+    font-size: 25px;
+}

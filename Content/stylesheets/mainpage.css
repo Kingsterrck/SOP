@@ -1,0 +1,164 @@
+* {
+    margin:0;
+    padding: 0;
+    border: none;
+    font-family: "Segoe UI";
+}
+h1 {
+    color: gold;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+#maxContainer {
+    padding-top: 74px;
+    width: 100%;
+    background-color: #232323;
+    height: auto;
+}
+#mainContent {
+    margin: 0 auto;
+    transition: 0.25s;
+    background-color: #232323;
+}
+#sportSelect {
+    position: relative;
+    zoom: 1;
+    margin-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: #323232 solid 3px;
+}
+#sportLabelContainer, #gameLabelContainer {
+    overflow: hidden;
+    zoom: 1;
+}
+#sportSelect h1, #gameLabelContainer h1 {
+    float:left;
+}
+#allSportsLinkContainer, #allGamesLinkContainer {
+    float: right;
+}
+#allSportsLinkContainer a, #allGamesLinkContainer a {
+    text-decoration: none;
+    color:white;
+}
+#sportSelectContainer {
+    overflow: hidden;
+    zoom: 1;
+    margin-top:20px;
+}
+.sportIcon {
+    height:125px;
+    background-color: #818181;/*temporary*/
+    float: left;
+    border-radius: 15px;
+    width: 386px;
+    margin-bottom: 15px;
+}
+.sportIcon:first-child,.sportIcon[data="2"] {
+    margin-right: 20px;
+}
+.sportIcon h3 {
+    margin-top: 50px;
+    margin-left: 25px;
+}
+#newestGames {
+    padding: 30px 0;
+    border-bottom: #323232 solid 3px;
+}
+#gameLabelContainer {
+    margin-bottom: 15px;
+}
+.gameSelect {
+    width: 250px;
+    height: 120px;
+    background-color: #323232;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.gameSelectTop {
+    overflow: hidden;
+    zoom: 1;
+    padding-top: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.gameSelectTop h4 {
+    float: left;
+    color: gold;
+}
+.gameSelectTop p {
+    float: right;
+}
+.gameTeams {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.gameSelect p {
+    margin-left: 10px;
+    color: white;
+}
+.gameSelectBottom {
+    background-color: #818181;
+    position: relative;
+    overflow: hidden;
+    zoom: 1;
+    height: 50px;
+    padding: 8px 10px;
+}
+.gameSelectBottom * {
+    float: left;
+}
+.gameSelectBottom img {
+    width: 20px;
+}
+.gameSelectBottom p {
+    margin-right: 10px;
+}
+#extendedMenu {
+    margin-top: 20px;
+    overflow: hidden;
+    zoom: 1;
+    border-bottom: gold solid 3px;
+}
+
+.extendedMenuIcon {
+    height:125px;
+    background-color: #323232;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 40px;
+}
+.extendedMenuIcon * {
+    color: white;
+    margin-top: 45px;
+}
+.extendedMenuIconLeft {
+    float: left;
+    margin-left: 30px;
+}
+.extendedMenuIconRight {
+    float: right;
+    margin-right: 30px;
+}
+#footer{
+    overflow: hidden;
+    zoom: 1;
+}
+#footer p {
+    float: left;
+    color: #818181;
+    margin-top: 10px;
+}
+#footer a {
+    float: right;
+    text-decoration: none;
+    color: #818181;
+    margin-top: 10px;
+}
