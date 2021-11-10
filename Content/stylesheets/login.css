@@ -5,8 +5,20 @@ form div a {
     text-decoration: gold underline;
     margin-right: 23px;
 }
-.loginBox[placeholder="登录"] {
+.loginBox[value="登录"] {
     background-color: gold;
     color: black;
     font-size: 25px;
+    width:290px;
+}
+a.loginBox {
+    width: 290px;
+    line-height: 60px;
+    text-align: center;
+    display: inline-block;
+    background-color: #232323;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px 0;
 }

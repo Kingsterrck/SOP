@@ -31,13 +31,7 @@ body {
     margin: 15px auto;
 }
 .signUpUI input {
-    position:relative;
-    height: 60px;
-    background-color: #232323;
-    outline: none;
-    border-radius: 5px;
-    color:white;
-    margin: 10px auto;
+
 }
 #signUpFirstStep input[value="注册"],#signUpSuccess input {
     margin-top: 20px;
@@ -46,7 +40,15 @@ body {
     font-size: large;
 }
 .loginBox {
-    width: 300px;
+    position:relative;
+    height: 60px;
+    background-color: #232323;
+    outline: none;
+    border-radius: 5px;
+    color:white;
+    margin: 10px auto;
+    padding:0 10px;
+    width: 270px;
 }
 .signUpUI p {
     color: white;

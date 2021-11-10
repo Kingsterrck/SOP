@@ -31,7 +31,7 @@
     <div id="headerContentContainer">
         <div id="headLeft">
             <ul>
-                <li class="headItems" id="headLeftItem1"><a href="all_sport.php">运动</a></li>
+                <li class="headItems" id="headLeftItem1"><a href="allSportNLI.php">运动</a></li>
                 <li class="headItems"><a href="#">战队</a></li>
                 <li class="headItems"><a href="#">比赛</a></li>
                 <li class="headItems"><a href="#">直播</a></li>

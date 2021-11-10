@@ -1,15 +1,24 @@
 <?php
 
 include_once "../config.php";
-function tempUserSelect($email)
+function tempUserSelect($email, $uPassword)
 {
     $p_email = "";
+    $p_uPassword="";
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("select * from temp_user where email=?");
-        $stmt->bind_param("s",$p_email);
-        $p_email = $email;
+        if ($uPassword=="¡"){
+            $stmt = $GLOBALS["conn"]->prepare("select * from temp_user where email=? ");
+            $stmt->bind_param("s",$p_email);
+            $p_email = $email;
+        }else{
+            $stmt = $GLOBALS["conn"]->prepare("select * from temp_user where email=? and uPassword =?");
+            $stmt->bind_param("ss",$p_email,$p_uPassword);
+            $p_email = $email;
+            $p_uPassword = $uPassword;
+        }
+
 
         $stmt->execute();
         // $result = $GLOBALS["conn"]->query($sql);

@@ -1,0 +1,83 @@
+.shortLoginBox {
+    height: 60px;
+    width: 130px;
+    background-color: #232323;
+    border-radius: 10px;
+    margin-top:10px;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    zoom: 1;
+    outline: none;
+    color: white;
+    padding-left: 10px;
+}
+#genderSelect > p {
+    background-color: #232323;
+    color: #818181;
+    margin-top: 20px;
+    float: left;
+    margin-left: 10px;
+}
+select {
+    display: none;
+    background-color: #232323;
+    border-radius: 10px;
+    width: 130px;
+    bottom: 36px;
+    outline: white 1px solid;
+    z-index: 10;
+}
+form {
+    overflow: hidden;
+    zoom: 1;
+}
+#genderDropdown ul {
+    list-style: none;
+}
+#genderSelect {
+    width:140px;
+}
+option {
+    color: #818181;
+    text-align: left;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.shortLoginBoxContainer {
+    overflow: hidden;
+    zoom: 1;
+    margin: 0 auto;
+    width: 290px;
+}
+#secondSportContainer {
+    width: 456px;
+    margin: 0 auto;
+    overflow: hidden;
+    zoom: 1;
+}
+.secondStepSport {
+    border: #323232 2px solid;
+    float: left;
+    display: inline-block;
+    line-height: 60px;
+    margin-right: 10px;
+    margin-bottom:10px;
+    background-color: #232323;
+    color:#818181;
+    border-radius: 7px;
+    width: 100px;
+}
+.selectedSecondStepSport {
+    border: gold 2px solid;
+    color: white;
+}
+.nextStep {
+    margin-top: 20px;
+    background-color: gold;
+    color: black;
+    font-size: large;
+}
+input[placeholder="年龄"] {
+    margin-left: 10px;
+}
