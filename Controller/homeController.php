@@ -3,9 +3,13 @@ include_once "../Model/classicsModel.php";
 require_once "../Model/temp_user_model.php";
 require_once "../Model/user_info_model.php";
 require_once "../Business/HomeBusi.php";
+require_once "../Model/sport_type_model.php";
 
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
     return insertIntoClassics($_POST["author"],$_POST["title"],$_POST["category"],$_POST["year"],$_POST["isbn"]);
+}
+if(isset($_POST["sportType"])){
+    echo getSportType();
 }
 
 //if (isset($_POST["email"])&&isset($_POST["uPassword"])) {
@@ -30,7 +34,12 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
     }
 }
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])&&isset($_POST["createTime"])&&isset($_POST["updatedTime"])) {
-
+    $temp = submitUserInfo($_POST["email"],$_POST["uPassword"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["createTime"],$_POST["updatedTime"]);
+    if ($temp == 1) {
+        echo 1;
+    } else {
+        echo 2;
+    }
 }
 
 
@@ -84,6 +93,7 @@ function checkTempUser($email, $password="¡") {
 
 function checkLoginInfo($email,$uPassword) {
     $checkStatus = selectUserByUsernameAndPassword($email, $uPassword);
+    $checkStatus = selectUserByUsernameAndPassword($email, $uPassword);
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) {
             //在userinfo里面有
@@ -109,9 +119,22 @@ function submitUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age,
     $checkStatus = insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createTime, $updatedTime);
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) { //successfully inserted
-
+            return 1;
         }
     } else {
+        return 2;
+    }
+}
+
+function getSportType() {
+    $result = "";
+    $names = sportTypeSelect();
+    if ($result[0] == 1) {
+        echo $result[1];
+    } else {
+        $result = $names[1];
+        $sportNameStr = gettingSportType($result);
+        return $sportNameStr;
 
     }
 }

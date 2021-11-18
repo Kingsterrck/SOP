@@ -1,5 +1,6 @@
 <?php
 include_once "headerNLI_fsm.php";
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -13,7 +14,7 @@ include_once "headerNLI_fsm.php";
 <body>
     <div id="mainBox">
         <div class="signUpUI" sequence="1">
-            <form>
+            <form id="firstStepForm">
                 <h1>欢迎！！</h1>
                 <p>请完善你的个人信息</p>
                 <input type="text" class="loginBox" placeholder="用户名">
@@ -30,7 +31,8 @@ include_once "headerNLI_fsm.php";
                 <div class="shortLoginBoxContainer">
                     <input type="number" class="shortLoginBox" placeholder="身高 in centimeters" min="100" max="250">
                     <input type="number" class="shortLoginBox" placeholder="体重 in kilograms" min="20" max="300" style="float:right">
-                    <button type="button" class="loginBox nextStep" onclick="nextPage1()">下一步</button>
+                    <input type="submit" class="loginBox nextStep">下一步</input>
+                </div>
             </form>
         </div>·
         </div>
@@ -38,23 +40,26 @@ include_once "headerNLI_fsm.php";
             <h1>选择你感兴趣的运动</h1>
             <p>可以多选</p>
             <div id="secondSportContainer">
-                <a href="#" class="secondStepSport" dataId="3">篮球</a>
-                <a href="#" class="secondStepSport" dataId="1" >羽毛球</a>
-                <a href="#" class="secondStepSport">橄榄球</a>
-                <a href="#" class="secondStepSport">乒乓球</a>
-                <a href="#" class="secondStepSport">足球</a>
-                <a href="#" class="secondStepSport">网球</a>
-                <a href="#" class="secondStepSport">排球</a>
-                <a href="#" class="secondStepSport">曲棍球</a>
-                <a href="#" class="secondStepSport">飞盘</a>
-                <a href="#" class="secondStepSport">棒球</a>
-                <a href="#" class="secondStepSport">高尔夫</a>
-                <a href="#" class="secondStepSport">桌球</a>
+<!--                <a href="#" class="secondStepSport" dataId="3">篮球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="1">羽毛球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="6">橄榄球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="7">乒乓球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="8">足球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="9">网球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="5">排球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="10">曲棍球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="11">飞盘</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="2">棒球</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="12">高尔夫</a>-->
+<!--                <a href="#" class="secondStepSport" dataId="13">桌球</a>-->
+
             </div>
             <button type="button" class="loginBox nextStep" onclick="nextPage2()">下一步</button>
 
         </div>
-        <div>
+        <div class="signUpUI" sequence="3">
+
+
 
         </div>
     </div>

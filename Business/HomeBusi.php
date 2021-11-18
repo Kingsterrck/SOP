@@ -12,3 +12,16 @@ function getClassicStr($data){
     }
     return $resultString;
 }
+function gettingSportType($data) {
+    $resultString = "";
+    for ($i = 0;$i<$data->num_rows;$i++) {
+//            $resultString +=
+        $data->data_seek($i);
+        $row = $data->fetch_array();
+        $sport = $row["type_name"];
+        $dataId = $row["id"];
+        $resultString .= "<a href='#' class='secondStepSport' dataId='$dataId'>$sport</a>";
+
+    }
+    return $resultString;
+}
