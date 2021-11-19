@@ -15,6 +15,7 @@ $(document).ready(function(){
     })
     $("#firstStepForm").submit(function () {
         var data = $("#firstStepForm").serialize();
+        console.log(data);
         $.ajax({
             type: "POST",
             url: "../../Controller/homeController.php",
@@ -23,10 +24,12 @@ $(document).ready(function(){
                 if (data == 1) {
                     nextPage1();
                 } else {
+                    console.log(data);
                     alert("YOUR DATA HAS NOT BEEN SUBMITTED FOR SOME KIND OF REASON");
                 }
             }
         })
+        return false;
     })
 
 })

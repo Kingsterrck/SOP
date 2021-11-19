@@ -17,8 +17,8 @@ include_once "headerNLI_fsm.php";
             <form id="firstStepForm">
                 <h1>欢迎！！</h1>
                 <p>请完善你的个人信息</p>
-                <input type="text" class="loginBox" placeholder="用户名">
-                <input type="number" class="loginBox" placeholder="手机号码">
+                <input name="username" type="text" class="loginBox" placeholder="用户名">
+                <input name="phoneNum" type="number" class="loginBox" placeholder="手机号码">
                 <div class="shortLoginBoxContainer">
                         <select class="shortLoginBox" name="gender" id="genderSelect">
                             <option value="1">Male</option>

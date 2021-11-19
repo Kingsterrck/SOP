@@ -11,17 +11,7 @@ if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&
 if(isset($_POST["sportType"])){
     echo getSportType();
 }
-
-//if (isset($_POST["email"])&&isset($_POST["uPassword"])) {
-//
-//    $duplicatedUser = checkTempUser($_POST["email"]);
-//    if ($duplicatedUser) {
-//        $temp = insertIntoTempUser($_POST["email"],$_POST["uPassword"]);
-//        echo "1¿$temp";
-//    } else {
-//        echo "2¿this email has been registered, go to login page";
-//    }
-//}
+//log in entrance
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
     error_log("post email");
     $temp = checkLoginInfo($_POST["email"],$_POST["uPassword"]);
@@ -33,6 +23,18 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
         echo 3;
     }
 }
+
+//sign up entrance
+if (isset($_POST["email"])&&isset($_POST["uPassword"])) {
+    $duplicatedUser = checkTempUser($_POST["email"]);
+    if ($duplicatedUser) {
+        $temp = insertIntoTempUser($_POST["email"],$_POST["uPassword"]);
+        echo "1¿$temp";
+    } else {
+        echo "2¿this email has been registered, go to login page";
+    }
+}
+
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])&&isset($_POST["createTime"])&&isset($_POST["updatedTime"])) {
     $temp = submitUserInfo($_POST["email"],$_POST["uPassword"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["createTime"],$_POST["updatedTime"]);
     if ($temp == 1) {
@@ -41,7 +43,6 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["username"]
         echo 2;
     }
 }
-
 
 function insertIntoClassics($author, $title, $category, $year, $isbn) {
     $insertStatus = classicsInsert($author, $title, $category, $year, $isbn);
