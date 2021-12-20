@@ -5,6 +5,7 @@ require_once "../Model/user_info_model.php";
 require_once "../Business/HomeBusi.php";
 require_once "../Model/sport_type_model.php";
 
+session_start();
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
     return insertIntoClassics($_POST["author"],$_POST["title"],$_POST["category"],$_POST["year"],$_POST["isbn"]);
 }
@@ -16,8 +17,12 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
     error_log("post email");
     $temp = checkLoginInfo($_POST["email"],$_POST["uPassword"]);
     if ($temp == 1) {
+        $_SESSION["email"] = $_POST["email"];
+        $_SESSION["password"] = $_POST["uPassword"];
         echo 1;
     } else if ($temp == 2) {
+        $_SESSION["email"] = $_POST["email"];
+        $_SESSION["password"] = $_POST["uPassword"];
         echo 2;
     } else if ($temp == 3) {
         echo 3;
@@ -25,24 +30,33 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
 }
 
 //sign up entrance
-if (isset($_POST["email"])&&isset($_POST["uPassword"])) {
+if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) {
     $duplicatedUser = checkTempUser($_POST["email"]);
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["password"] = $_POST["uPassword"];
     if ($duplicatedUser) {
         $temp = insertIntoTempUser($_POST["email"],$_POST["uPassword"]);
+
         echo "1¿$temp";
     } else {
         echo "2¿this email has been registered, go to login page";
     }
 }
 
-if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])&&isset($_POST["createTime"])&&isset($_POST["updatedTime"])) {
-    $temp = submitUserInfo($_POST["email"],$_POST["uPassword"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["createTime"],$_POST["updatedTime"]);
+if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
+    error_log("submitted");
+    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"]);
     if ($temp == 1) {
         echo 1;
     } else {
         echo 2;
     }
 }
+if (isset($_POST["selectedList"])) {
+    $temp = getPositionName($_POST["selectedList"]);
+
+}
+
 
 function insertIntoClassics($author, $title, $category, $year, $isbn) {
     $insertStatus = classicsInsert($author, $title, $category, $year, $isbn);
@@ -94,7 +108,6 @@ function checkTempUser($email, $password="¡") {
 
 function checkLoginInfo($email,$uPassword) {
     $checkStatus = selectUserByUsernameAndPassword($email, $uPassword);
-    $checkStatus = selectUserByUsernameAndPassword($email, $uPassword);
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) {
             //在userinfo里面有
@@ -113,13 +126,15 @@ function checkLoginInfo($email,$uPassword) {
     }
 }
 
-function submitUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createTime, $updatedTime) {
+function submitUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight) {
     date_default_timezone_set('PRC');
-    $createTime = date("Y-m-d H:i:s");
+    $createdTime = date("Y-m-d H:i:s");
     $updatedTime = date("Y-m-d H:i:s");
-    $checkStatus = insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createTime, $updatedTime);
+    //TODO select from userinfo if the user is duplicated
+    $checkStatus = insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime);
     if ($checkStatus[0] == 2) {
-        if ($checkStatus[1]->num_rows >= 1) { //successfully inserted
+        error_log($checkStatus[1]);
+        if ($checkStatus[1] >= 1) { //successfully inserted
             return 1;
         }
     } else {
@@ -136,6 +151,14 @@ function getSportType() {
         $result = $names[1];
         $sportNameStr = gettingSportType($result);
         return $sportNameStr;
+
+    }
+}
+
+function getPositionName($str) {
+    $data = [];
+    $splitedStr = $str.explode("¿");
+    for ($i=0;$i<$splitedStr.length;$i++) {
 
     }
 }

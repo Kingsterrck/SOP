@@ -10,6 +10,8 @@ $(document).ready(function(){
             $("#secondSportContainer").html(data);
             $(".secondStepSport").click(function (){
                 $(this).toggleClass("selectedSecondStepSport");
+
+
             });
         }
     })
@@ -31,7 +33,23 @@ $(document).ready(function(){
         })
         return false;
     })
+    $("#nextPage2").click(function(){
+        var sportList = $(".selectedSecondStepSport");
+        var selectedListStr = ""
+        for (i=0;i<sportList.length;i++) {
+            var temp = sportList[i].getAttribute("dataid");
+            selectedListStr =  selectedListStr + temp +"¿";
+        }
+        selectedListStr = selectedListStr.substring(0,selectedListStr.length-1);
+        $.ajax({
+            type: "POST",
+            url: "../../Controller/homeController.php",
+            data: "selectedList="+selectedListStr,
+            success: function (data) {
 
+            }
+        })
+    })
 })
 var buttonList = document.getElementsByTagName("button");
 for (i=0;i<buttonList.length;i++) {
@@ -42,6 +60,7 @@ function changeGenderIdentifier(element) {
     var target = document.getElementById("genderIdentify");
     target.innerHTML=a;
 }
+//TODO: relocate the nextpage functions into ajax
 function nextPage1() {
     $(".signUpUI[sequence='1']").hide();
     $(".signUpUI[sequence='2']").show();

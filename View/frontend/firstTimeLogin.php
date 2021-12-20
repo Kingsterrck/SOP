@@ -12,6 +12,12 @@ include_once "headerNLI_fsm.php";
     <script src="../../Content/js/jQuery%201.8.js"></script>
 </head>
 <body>
+<?php
+session_start();
+if(isset($_SESSION["email"])){
+    error_log($_SESSION["email"]);
+}
+?>
     <div id="mainBox">
         <div class="signUpUI" sequence="1">
             <form id="firstStepForm">
@@ -26,36 +32,34 @@ include_once "headerNLI_fsm.php";
                             <option value="3">Non-binary</option>
                             <option value="4">Not to tell</option>
                         </select>
-                        <input type="number" class="shortLoginBox" placeholder="年龄"  min="1" max="100">
+                        <input name="age" type="number" class="shortLoginBox" placeholder="年龄"  min="1" max="100">
                 </div>
                 <div class="shortLoginBoxContainer">
-                    <input type="number" class="shortLoginBox" placeholder="身高 in centimeters" min="100" max="250">
-                    <input type="number" class="shortLoginBox" placeholder="体重 in kilograms" min="20" max="300" style="float:right">
+                    <input name="height" type="number" class="shortLoginBox" placeholder="身高 in centimeters" min="100" max="250">
+                    <input name="weight" type="number" class="shortLoginBox" placeholder="体重 in kilograms" min="20" max="300" style="float:right">
                     <input type="submit" class="loginBox nextStep">下一步</input>
                 </div>
             </form>
-        </div>·
         </div>
         <div class="signUpUI" sequence="2" style="width:500px">
-            <h1>选择你感兴趣的运动</h1>
-            <p>可以多选</p>
-            <div id="secondSportContainer">
-<!--                <a href="#" class="secondStepSport" dataId="3">篮球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="1">羽毛球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="6">橄榄球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="7">乒乓球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="8">足球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="9">网球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="5">排球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="10">曲棍球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="11">飞盘</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="2">棒球</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="12">高尔夫</a>-->
-<!--                <a href="#" class="secondStepSport" dataId="13">桌球</a>-->
+                <h1>选择你感兴趣的运动</h1>
+                <p>可以多选</p>
+                <div id="secondSportContainer">
+                    <!--                <a href="#" class="secondStepSport" dataId="3">篮球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="1">羽毛球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="6">橄榄球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="7">乒乓球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="8">足球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="9">网球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="5">排球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="10">曲棍球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="11">飞盘</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="2">棒球</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="12">高尔夫</a>-->
+                    <!--                <a href="#" class="secondStepSport" dataId="13">桌球</a>-->
 
-            </div>
-            <button type="button" class="loginBox nextStep" onclick="nextPage2()">下一步</button>
-
+                </div>
+                <button type="button" class="loginBox nextStep" id="nextPage2">下一步</button>
         </div>
         <div class="signUpUI" sequence="3">
 

@@ -23,7 +23,7 @@ function selectUserByUsernameAndPassword($email, $uPassword) {
     }
 }
 
-function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createTime, $updatedTime) {
+function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime) {
     $p_email = "";
     $p_uPassword = "";
     $p_username = "";
@@ -32,14 +32,14 @@ function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $
     $p_age = "";
     $p_height = "";
     $p_weight = "";
-    $p_createTime = "";
+    $p_createdTime = "";
     $p_updatedTime = "";
 
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("insert into userinfo(email,uPassword,username,phoneNum,gender,age,height,weight,createTime,updatedTime)");
-        $stmt->bind_param("sssiiiiiss", $p_email, $p_uPassword, $p_username, $p_phoneNum, $p_gender, $p_age, $p_height, $p_weight, $p_createTime, $p_updatedTime);
+        $stmt = $GLOBALS["conn"]->prepare("insert into userinfo(email,u_password,username,phoneNum,gender,age,height,weight,createdTime,updatedTime) values(?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssiiiiss", $p_email, $p_uPassword, $p_username, $p_phoneNum, $p_gender, $p_age, $p_height, $p_weight, $p_createdTime, $p_updatedTime);
 
         $p_email = $email;
         $p_uPassword = $uPassword;
@@ -49,11 +49,28 @@ function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $
         $p_age = $age;
         $p_height = $height;
         $p_weight = $weight;
-        $p_createTime = $createTime;
+        $p_createdTime = $createdTime;
         $p_updatedTime = $updatedTime;
 
             $stmt->execute();
+        error_log($stmt->error);
+        if ($stmt->error) {
+            return [1, $stmt->error];
+        } else {
+            return [2, $stmt->affected_rows];
+        }
+    }
+}
 
+function spaceGetInfo($email) {
+    $p_email = "";
+    if($GLOBALS["conn"]->connect_error) {
+        die("failed" . $GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("select username, gender, age, height, weight from userinfo where email=?");
+        $stmt->bind_param("s",$p_email);
+        $p_email = $email;
+        $stmt->execute();
         if ($stmt->error) {
             return [1, $stmt->error];
         } else {

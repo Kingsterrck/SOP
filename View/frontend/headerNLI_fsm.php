@@ -40,7 +40,9 @@
             </ul>
         </div>
         <div id="headMid">
-            <h1>赛事系统</h1>
+            <a href="index.php">
+                <h1>赛事系统</h1>
+            </a>
         </div>
         <div id="headRight">
             <ul>

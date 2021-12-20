@@ -1,0 +1,32 @@
+#nameBanner {
+    width: 100%; /* write js later to change according to resize*/
+    height: 200px;
+    background: #151515;
+}
+#nameDisplayBox {
+    top:70px;
+    left: 30px;
+    position: relative;
+}
+#nameBanner svg {
+    left: -113px;
+    position: absolute;
+}
+#personalData {
+    overflow: hidden;
+    zoom: 1;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: #818181 2px solid;
+}
+.personalDataDisplay {
+    float: left;
+    text-align: center;
+}
+.personalDataDisplay p {
+    color: white;
+}
+#interestedSport a {
+    overflow: hidden;
+    zoom: 1;
+}

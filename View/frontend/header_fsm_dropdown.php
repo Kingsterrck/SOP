@@ -24,7 +24,7 @@
             </ul>
         </div>
         <div id="headMid">
-            <h1>赛事系统</h1>
+            <a href="loggedInMainpage.php"><h1>赛事系统</h1></a>
         </div>
         <div id="headRight">
             <ul>
@@ -57,7 +57,7 @@
 </div>
 <div id="dropdown">
     <ul>
-        <li><a href="#">我的账号</a></li>
+        <li><a href="space.php">我的账号</a></li>
         <li><a href="#">测试评分</a></li>
         <li><a href="#">我的比赛</a></li>
         <li><a href="#">我的战队</a></li>

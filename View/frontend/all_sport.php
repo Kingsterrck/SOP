@@ -1,5 +1,9 @@
 <?php
-include_once "header_fsm_dropdown.php"
+if ($_SESSION["email"]) {
+    include_once "header_fsm_dropdown.php";
+} else {
+    include_once "headerNLI_fsm.php";
+}
 ?>
 <!DOCTYPE html>
 <head>
