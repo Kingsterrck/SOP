@@ -10,7 +10,9 @@
         <a href="#"><img id="menuButton" src="../../Content/imgsrc/icons/menu.png" onclick="openNav()"></a>
         <a href="#"><img onclick="toggleDropdown()" id="minimizedLittleMan" src="../../Content/imgsrc/icons/little%20man%20white.png"></a>
         <a href="#"><img onclick="toggleDropdown()" id="minimizedLittleMan2" src="../../Content/imgsrc/icons/little%20man%20gold.png"></a>
-        <h1>赛事系统</h1>
+        <a href="loggedInMainpage.php">
+            <h1>赛事系统</h1>
+        </a>
     </div>
     <div id="headerContentContainer">
         <div id="headLeft">

@@ -4,6 +4,7 @@ require_once "../Model/temp_user_model.php";
 require_once "../Model/user_info_model.php";
 require_once "../Business/HomeBusi.php";
 require_once "../Model/sport_type_model.php";
+require_once "../Model/occupationPositionModel.php";
 
 session_start();
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
@@ -53,8 +54,8 @@ if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["usern
     }
 }
 if (isset($_POST["selectedList"])) {
-    $temp = getPositionName($_POST["selectedList"]);
-
+    $listOfPos = getPositionName($_POST["selectedList"]);
+    echo $listOfPos;
 }
 
 
@@ -157,8 +158,16 @@ function getSportType() {
 
 function getPositionName($str) {
     $data = [];
-    $splitedStr = $str.explode("¿");
-    for ($i=0;$i<$splitedStr.length;$i++) {
-
+    $splitedStr = explode("¿",$str);
+    $listOfPosition="";
+    for ($i=0;$i<sizeof($splitedStr);$i++) {
+        $temp = selectOccupationPositionBySportId($splitedStr[$i]);
+        if ($temp[0]==1){
+            return $temp[1];
+        }else{
+            $processedTemp = fuseOccuPos($temp[1]);
+            $listOfPosition .= $processedTemp . "¡";
+        }
     }
+    return $listOfPosition;
 }

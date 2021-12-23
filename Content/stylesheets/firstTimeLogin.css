@@ -84,3 +84,6 @@ option {
 input[placeholder="年龄"] {
     margin-left: 10px;
 }
+h4 {
+    text-align: left;
+}

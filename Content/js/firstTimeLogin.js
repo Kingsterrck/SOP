@@ -10,8 +10,6 @@ $(document).ready(function(){
             $("#secondSportContainer").html(data);
             $(".secondStepSport").click(function (){
                 $(this).toggleClass("selectedSecondStepSport");
-
-
             });
         }
     })
@@ -40,13 +38,16 @@ $(document).ready(function(){
             var temp = sportList[i].getAttribute("dataid");
             selectedListStr =  selectedListStr + temp +"¿";
         }
-        selectedListStr = selectedListStr.substring(0,selectedListStr.length-1);
+        selectedListStr = selectedListStr.substring(0,selectedListStr.length-1);//delete the last ¿
+        console.log(selectedListStr);
         $.ajax({
             type: "POST",
             url: "../../Controller/homeController.php",
             data: "selectedList="+selectedListStr,
             success: function (data) {
 
+                nextPage2();
+                $("#putItHere").html(data);
             }
         })
     })
@@ -68,6 +69,5 @@ function nextPage1() {
 function nextPage2() {
     $(".signUpUI[sequence='2']").hide();
     $(".signUpUI[sequence='3']").show();
-
-
 }
+

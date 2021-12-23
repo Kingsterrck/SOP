@@ -45,25 +45,26 @@ if(isset($_SESSION["email"])){
                 <h1>选择你感兴趣的运动</h1>
                 <p>可以多选</p>
                 <div id="secondSportContainer">
-                    <!--                <a href="#" class="secondStepSport" dataId="3">篮球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="1">羽毛球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="6">橄榄球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="7">乒乓球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="8">足球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="9">网球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="5">排球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="10">曲棍球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="11">飞盘</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="2">棒球</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="12">高尔夫</a>-->
-                    <!--                <a href="#" class="secondStepSport" dataId="13">桌球</a>-->
 
                 </div>
                 <button type="button" class="loginBox nextStep" id="nextPage2">下一步</button>
         </div>
         <div class="signUpUI" sequence="3">
+            <form>
+                <h1>选择你的级别和位置</h1>
+                <div id="putItHere" class="shortLoginBoxContainer">
+<!--                    <div>-->
+<!--                        <h4>sport name</h4>-->
+<!--                        <select class="shortLoginBox">-->
+<!--                            <option>position 1</option>-->
+<!--                            <option>position 2</option>-->
+<!--                            <option>position 3</option>-->
+<!--                            <option>position 4</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+                </div>
 
-
+            </form>
 
         </div>
     </div>

@@ -21,7 +21,18 @@ function gettingSportType($data) {
         $sport = $row["type_name"];
         $dataId = $row["id"];
         $resultString .= "<a href='#' class='secondStepSport' dataId='$dataId'>$sport</a>";
-
     }
+    return $resultString;
+}
+
+function fuseOccuPos($data) {
+    $resultString = "";
+    for ($i = 0;$i<$data->num_rows;$i++) {
+        $data->data_seek($i);
+        $row = $data->fetch_array();
+        $nameOfPos = $row["position_name"];
+        $resultString .= "<option>$nameOfPos</option>";
+    }
+    $resultString = "<select class='shortLoginBox'>$resultString</select>";
     return $resultString;
 }

@@ -1,7 +1,7 @@
 <?php
 
 include_once "../config.php";
-function firstTimeLogin($sportTypeId) {
+function selectOccupationPositionBySportId($sportTypeId) {
     $p_sportTypeId = "";
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);

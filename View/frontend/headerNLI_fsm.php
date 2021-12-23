@@ -26,7 +26,9 @@
             <li class="headItems"><a href="login.php">登录</a></li>
             <li class="headItems"><a href="sign_up.php">注册</a></li>
         </ul>
-        <h1>赛事系统</h1>
+        <a href="index.php">
+            <h1>赛事系统</h1>
+        </a>
     </div>
     <div id="headerContentContainer">
         <div id="headLeft">
