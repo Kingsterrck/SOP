@@ -1,5 +1,6 @@
 <?php
-if ($_SESSION["email"]) {
+session_start();
+if (isset($_SESSION["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
     include_once "headerNLI_fsm.php";
@@ -68,5 +69,6 @@ if ($_SESSION["email"]) {
 
 <script src="../../Content/js/loggedInMainpage.js"></script>
 <script src="../../Content/js/mainpage.js"></script>
+<script src="../../Content/js/allSport.js"></script>
 </body>
 </html>

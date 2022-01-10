@@ -19,7 +19,6 @@ function changeUI() {
 $(document).ready(function(){
     $("#tempSignUp").submit(function(){
         var data = $("#tempSignUp").serialize();
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "../../Controller/homeController.php",

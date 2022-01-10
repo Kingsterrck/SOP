@@ -64,9 +64,10 @@
         <li><a href="#">我的比赛</a></li>
         <li><a href="#">我的战队</a></li>
         <li><a href="#">我的二手闲置</a></li>
-        <li><a href="#">登出</a></li>
+        <li><a href="#" id="logoutButton">登出</a></li>
     </ul>
 </div>
 <script src="../../Content/js/headerExtendedResponsive.js"></script>
+<script src="../../Content/js/logout.js"></script>
 </body>
 </html>

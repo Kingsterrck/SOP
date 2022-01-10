@@ -1,6 +1,9 @@
 <?php
 include_once "header_fsm_dropdown.php";
-
+session_start();
+//if (!isset($_SESSION[""])){
+//    header("Location: index.php");
+//}
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +27,18 @@ include_once "header_fsm_dropdown.php";
                                 <h3>测试评分</h3>
                             </div>
                         </a>
-                        <a href="#">
+                        <?php
+                        if (isset($_SESSION["sdfadf"])){
+                           echo'<a href="#">
                             <div id="myGames" class="sportIcon">
                                 <h3>我的比赛</h3>
                             </div>
-                        </a>
+                        </a>';
+
+                        }
+
+                        ?>
+
                         <a href="#">
                             <div class="sportIcon">
                                 <h3>我的战队</h3>

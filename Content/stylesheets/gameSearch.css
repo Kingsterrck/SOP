@@ -1,0 +1,38 @@
+#gameSelectorContainer {
+    overflow: hidden;
+    zoom: 1;
+}
+#gameSelectorContainer a {
+    float: left;
+    margin-right: 20px;
+    color: #876A11;
+}
+.active {
+    color: gold !important;
+}
+#mainContent+div  {
+    float: left;
+}
+#mainContent {
+    overflow: hidden;
+    zoom: 1;
+}
+.gameInfoDisplay {
+    overflow: hidden;
+    zoom: 1;
+    height:55px;
+    background-color: #323232;
+    border-radius: 10px;
+    margin: 15px 0;
+    color: white;
+}
+.gameInfoDisplayTitle {
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.gameInfoDisplayElement {
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
