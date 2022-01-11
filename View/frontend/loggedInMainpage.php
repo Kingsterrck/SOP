@@ -20,25 +20,18 @@ session_start();
             <div id="maxContainer">
             <div id="mainContent">
                 <div id="personalSelect">
-                    <h1>Hi, Kingsterrck</h1>
+                    <h1 id="usernameDisplay">Hi</h1>
                     <div id="personalSelectIconContainer">
                         <a href="#">
                             <div id="takeATest" class="sportIcon">
                                 <h3>测试评分</h3>
                             </div>
                         </a>
-                        <?php
-                        if (isset($_SESSION["sdfadf"])){
-                           echo'<a href="#">
+                        <a href="#">
                             <div id="myGames" class="sportIcon">
                                 <h3>我的比赛</h3>
                             </div>
-                        </a>';
-
-                        }
-
-                        ?>
-
+                        </a>
                         <a href="#">
                             <div class="sportIcon">
                                 <h3>我的战队</h3>

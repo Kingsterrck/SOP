@@ -46,7 +46,7 @@ include_once "header_fsm_dropdown.php"
                 </g>
             </svg>
             <div id="nameDisplayBox">
-                <h1 id="topName">get name by session</h1>
+                <h1 id="topName">name</h1>
             </div>
         </div>
         <div id="mainContent">

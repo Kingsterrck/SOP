@@ -78,3 +78,20 @@ function spaceGetInfo($email) {
         }
     }
 }
+
+function getTheUserName($email) {
+    $p_email = "";
+    if($GLOBALS["conn"]->connect_error) {
+        die("failed" . $GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("select username from userinfo where email=?");
+        $stmt->bind_param("s",$p_email);
+        $p_email = $email;
+        $stmt->execute();
+        if ($stmt->error) {
+            return [1, $stmt->error];
+        } else {
+            return [2, $stmt->get_result()];
+        }
+    }
+}

@@ -6,7 +6,6 @@ session_set_cookie_params(86400);
 session_start();
 
 if (isset($_POST["type"])&&isset($_SESSION["email"])) {
-    error_log("get info");
     $temp = gettingSpaceInfo($_SESSION["email"]);
     $dataString = printPersonalData($temp);
     echo $dataString;
@@ -22,6 +21,14 @@ if (isset($_POST["logout"])) {
     session_destroy();
     return 0;
 }
+if (isset($_POST["getUser"])) {
+    $returnedUsername = getUsername();
+    error_log("fuck php");
+    $returnedUsername->data_seek(0);
+    $row = $returnedUsername->fetch_array();
+    $tempName = $row["username"];
+    echo $tempName;
+}
 
 function gettingSpaceInfo($email) {
     $stringChain = spaceGetInfo($email);
@@ -35,4 +42,12 @@ function gettingSpaceInfo($email) {
 
 function getGameInfo($sportName) {
     $temp = getGameInfoBySport($sportName);
+}
+
+function getUsername() {
+    $userId = $_SESSION["email"];
+    error_log("you're in 2");
+    error_log($userId);
+    $username = getTheUserName($userId);
+    return $username[1];
 }

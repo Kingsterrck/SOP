@@ -1,5 +1,8 @@
 <?php
 include_once "headerNLI_fsm.php";
+if (isset($_SESSION["email"])) {
+    header("location: loggedInMainpage.php");
+}
 ?>
 <!DOCTYPE html>
     <head>
