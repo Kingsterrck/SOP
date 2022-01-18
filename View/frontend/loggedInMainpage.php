@@ -1,6 +1,7 @@
 <?php
 include_once "header_fsm_dropdown.php";
 session_start();
+session_set_cookie_params(86400);
 //if (!isset($_SESSION[""])){
 //    header("Location: index.php");
 //}
@@ -88,22 +89,31 @@ session_start();
                     </div>
                 </div>
                 <div id="extendedMenu">
-                    <div class="extendedMenuIcon">
-                        <h2 class="extendedMenuIconLeft">运动</h2>
-                        <h2 class="extendedMenuIconRight">></h2>
-                    </div>
-                    <div class="extendedMenuIcon">
-                        <h2 class="extendedMenuIconLeft">战队</h2>
-                        <h2 class="extendedMenuIconRight">></h2>
-                    </div>
-                    <div class="extendedMenuIcon">
-                        <h2 class="extendedMenuIconLeft">比赛</h2>
-                        <h2 class="extendedMenuIconRight">></h2>
-                    </div>
-                    <div class="extendedMenuIcon">
-                        <h2 class="extendedMenuIconLeft">直播</h2>
-                        <h2 class="extendedMenuIconRight">></h2>
-                    </div>
+                    <a href="all_sport.php">
+                        <div class="extendedMenuIcon">
+                            <h2 class="extendedMenuIconLeft">运动</h2>
+                            <h2 class="extendedMenuIconRight">></h2>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="extendedMenuIcon">
+                            <h2 class="extendedMenuIconLeft">战队</h2>
+                            <h2 class="extendedMenuIconRight">></h2>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="extendedMenuIcon">
+                            <h2 class="extendedMenuIconLeft">比赛</h2>
+                            <h2 class="extendedMenuIconRight">></h2>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="extendedMenuIcon">
+                            <h2 class="extendedMenuIconLeft">直播</h2>
+                            <h2 class="extendedMenuIconRight">></h2>
+                        </div>
+                    </a>
+
                 </div>
                 <div id="footer">
                     <p>© 2021 Kingster</p>

@@ -7,6 +7,7 @@ require_once "../Model/sport_type_model.php";
 require_once "../Model/occupationPositionModel.php";
 
 session_start();
+session_set_cookie_params(86400);
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
     return insertIntoClassics($_POST["author"],$_POST["title"],$_POST["category"],$_POST["year"],$_POST["isbn"]);
 }

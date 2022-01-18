@@ -34,11 +34,11 @@
         <div id="headLeft">
             <ul>
                 <li class="headItems" id="headLeftItem1"><a href="all_sport.php">运动</a></li>
-                <li class="headItems"><a href="#">战队</a></li>
-                <li class="headItems"><a href="#">比赛</a></li>
-                <li class="headItems"><a href="#">直播</a></li>
-                <li class="headItems"><a href="#">论坛</a></li>
-                <li class="headItems"><a href="#">场馆</a></li>
+                <li class="headItems"><a href="notAvailable.php">战队</a></li>
+                <li class="headItems"><a href="notAvailable.php">比赛</a></li>
+                <li class="headItems"><a href="notAvailable.php">直播</a></li>
+                <li class="headItems"><a href="notAvailable.php">论坛</a></li>
+                <li class="headItems"><a href="notAvailable.php">场馆</a></li>
             </ul>
         </div>
         <div id="headMid">
@@ -69,11 +69,11 @@
     <!-- Overlay content -->
     <div id="menuContent">
         <a href="all_sport.php">运动</a>
-        <a href="#">战队</a>
-        <a href="#">比赛</a>
-        <a href="#">直播</a>
-        <a href="#">论坛</a>
-        <a href="#">场馆</a>
+        <a href="notAvailable.php">战队</a>
+        <a href="notAvailable.php">比赛</a>
+        <a href="notAvailable.php">直播</a>
+        <a href="notAvailable.php">论坛</a>
+        <a href="notAvailable.php">场馆</a>
     </div>
 
 </div>
