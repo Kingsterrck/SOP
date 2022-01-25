@@ -43,9 +43,8 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "../../Controller/homeController.php",
-            data: "selectedList="+selectedListStr,
+            data: "selectedList="+selectedListStr+"&processUpdate=2",
             success: function (data) {
-
                 nextPage2();
                 $("#putItHere").html(data);
             }

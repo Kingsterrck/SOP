@@ -21,7 +21,7 @@ include_once "headerNLI_fsm.php";
             <input name="email" class="loginBox" type="text" placeholder="&nbsp;邮箱">
             <input name="uPassword" class="loginBox" type="password" placeholder="&nbsp;密码">
             <input class="loginBox" type="submit" value="注册" id="signUpButton">
-            <a href="#"><input class="loginBox" type="button" value="已经有账号？立刻登录"></a>
+            <a href="login.php"><input class="loginBox" type="button" value="已经有账号？立刻登录"></a>
         </form>
     </div>
     <div class="signUpUI" data="1" id="signUpSuccess">
@@ -34,6 +34,9 @@ include_once "headerNLI_fsm.php";
 <!---->
 <!--    </div>-->
 </div>
+<?php
+include_once "footer.php";
+?>
 <script src="../../Content/js/sign_up.js"></script>
 <!--<script src="js/header_responsiveness.js"></script>-->
 <script>

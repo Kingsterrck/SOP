@@ -73,6 +73,7 @@ session_set_cookie_params(86400);
                         </div>
                     </div>
                     <div id="gameSelectContainer">
+<!--                        each of the .gameSelect displays info of one game, including sport, team, time, and stream availability-->
                         <div class="gameSelect">
                             <div class="gameSelectTop">
                                 <h4>篮球</h4>

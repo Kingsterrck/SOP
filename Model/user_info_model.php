@@ -23,6 +23,7 @@ function selectUserByUsernameAndPassword($email, $uPassword) {
     }
 }
 
+//first step of first time logging in
 function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime) {
     $p_email = "";
     $p_uPassword = "";
@@ -92,6 +93,24 @@ function getTheUserName($email) {
             return [1, $stmt->error];
         } else {
             return [2, $stmt->get_result()];
+        }
+    }
+}
+function updateTheProcess($email, $processUpdate) {
+    $p_email = "";
+    $p_processUpdate = "";
+    if ($GLOBALS["conn"]->connect_error) {
+        die("failed" . $GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("UPDATE userinfo SET process = ? WHERE email = ?");
+        $stmt->bind_param("is",$p_processUpdate,$p_email);
+        $p_processUpdate = $processUpdate;
+        $p_email = $email;
+        $stmt->execute();
+        if ($stmt->error) {
+            return [1, $stmt->error];
+        } else {
+            return [2, $stmt->affected_rows];
         }
     }
 }

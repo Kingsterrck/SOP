@@ -23,6 +23,7 @@ if(isset($_SESSION["email"])){
             <form id="firstStepForm">
                 <h1>欢迎！！</h1>
                 <p>请完善你的个人信息</p>
+                <input hidden="hidden" name="processUpdate" type="number" value="1">
                 <input name="username" type="text" class="loginBox" placeholder="用户名">
                 <input name="phoneNum" type="number" class="loginBox" placeholder="手机号码">
                 <div class="shortLoginBoxContainer">

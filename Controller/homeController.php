@@ -43,18 +43,24 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) 
     } else {
         echo "2¿this email has been registered, go to login page";
     }
-}
+} 
 
-if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
+//first step of first time logging in entrance
+if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["processUpdate"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
     error_log("submitted");
-    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"]);
+    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],isset($_POST["processUpdate"]),$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"]);
     if ($temp == 1) {
         echo 1;
     } else {
-        echo 2;
+        $temp2 = updateUserProcess($_SESSION["email"],$_POST["processUpdate"]);
+        if ($temp2 == 2) {
+            echo 2;
+        } else {
+            echo 3;
+        }
     }
 }
-if (isset($_POST["selectedList"])) {
+if (isset($_POST["selectedList"])&&isset($_POST["processUpdate"])) {
     $listOfPos = getPositionName($_POST["selectedList"]);
     echo $listOfPos;
 }
@@ -128,12 +134,13 @@ function checkLoginInfo($email,$uPassword) {
     }
 }
 
-function submitUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight) {
+//first step of first time logging in
+function submitUserInfo($email, $uPassword, $processUpdate, $username, $phoneNum, $gender, $age, $height, $weight) {
     date_default_timezone_set('PRC');
     $createdTime = date("Y-m-d H:i:s");
     $updatedTime = date("Y-m-d H:i:s");
     //TODO select from userinfo if the user is duplicated
-    $checkStatus = insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime);
+    $checkStatus = insertIntoUserInfo($email, $uPassword, $processUpdate, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime);
     if ($checkStatus[0] == 2) {
         error_log($checkStatus[1]);
         if ($checkStatus[1] >= 1) { //successfully inserted
@@ -171,4 +178,9 @@ function getPositionName($str) {
         }
     }
     return $listOfPosition;
+}
+
+function updateUserProcess($email, $processUpdate) {
+    $a = updateTheProcess($email, $processUpdate)[0];
+    return $a;
 }
