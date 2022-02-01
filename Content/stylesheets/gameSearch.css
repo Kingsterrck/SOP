@@ -1,8 +1,14 @@
+#sportNameDisplay {
+    float: left;
+    margin-top:80px;
+    margin-left: 50px;
+}
+
 #gameSelectorContainer {
     overflow: hidden;
     zoom: 1;
 }
-#gameSelectorContainer a {
+#gameSelectorContainer h1 {
     float: left;
     margin-right: 20px;
     color: #876A11;
@@ -16,6 +22,12 @@
 #mainContent {
     overflow: hidden;
     zoom: 1;
+}
+#mainContent>div{
+    float: left;
+}
+#gameInfo {
+    margin-right: 20px;
 }
 .gameInfoDisplay {
     overflow: hidden;
@@ -35,4 +47,16 @@
     float: right;
     margin-right: 15px;
     margin-top: 15px;
+}
+#squadInfoContainer {
+    background-color: #323232;
+    border-radius: 10px;
+    margin-top:10px;
+}
+.indSquad {
+    overflow: hidden;
+    zoom: 1;
+}
+.indSquad>* {
+    float: left;
 }

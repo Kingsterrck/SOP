@@ -10,12 +10,14 @@ if (isset($_POST["type"])&&isset($_SESSION["email"])) {
     $dataString = printPersonalData($temp);
     echo $dataString;
 }
-if(isset($_POST["sportLink"])) {
-    $_SESSION["sportNameReq"] = $_POST["sportLink"];
+//link from all_sport to gameSearch
+if(isset($_GET["sportNameForLink"])) {
+    $_SESSION["sportNameRequest"] = $_GET["sportNameForLink"];
     return 0;
 }
-if (isset($_POST["gameSearchInit"])) {
-    $RENAMETHISVARIABLE = getGameInfo($_SESSION["sportNameReq"]);
+
+if (isset($_POST["gameSearchInitialize"])) {
+    $RENAMETHISVARIABLE = getGameInfo($_SESSION["sportNameRequest"]);
 }
 if (isset($_POST["logout"])) {
     session_destroy();
@@ -29,6 +31,12 @@ if (isset($_POST["getUser"])) {
     $tempName = $row["username"];
     echo $tempName;
 }
+
+//in squadSearch.php, user searches the squads using the search box
+if (isset($_POST["searchForSquad"])) {
+
+}
+
 
 function gettingSpaceInfo($email) {
     $stringChain = spaceGetInfo($email);

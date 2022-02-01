@@ -1,13 +1,24 @@
 #basketball {
-    background: url("../imgsrc/basketball.png") center;
+    background: url("../imgsrc/basketball.webp");
     background-size: cover;
 }
 #volleyball {
-    background: url("../imgsrc/volleyball.png") center;
+    background: url("../imgsrc/volleyball.webp");
     background-size: cover;
     background-position-y: 0;
 }
 #soccer {
     background: url("../imgsrc/soccer.png") center bottom;
     background-size: 150%;
+}
+#badminton {
+    background: url("../imgsrc/badminton.webp") center;
+    background-size: cover;
+}
+#tableTennis {
+    background: url("../imgsrc/tableTennis.webp") center;
+    background-size: cover;
+}
+#baseball {
+    background: url("../imgsrc/baseball.webp") center;
 }

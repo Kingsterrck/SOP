@@ -2,28 +2,32 @@
 ?>
 <!DOCTyPE html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>啊吧啊吧</title>
     <style>
+        * {
+            color: white;
+        }
         #footer{
             overflow: hidden;
             zoom: 1;
             background-color: #232323;
             border-radius: 20px;
             padding: 0 15px;
-            margin: 0 auto;
-            line-height: 10px;
+            line-height: 20px;
+            position: fixed;
+            bottom: 20px;
         }
         #footer p {
             float: left;
             color: #818181;
-            margin-top: 10px;
+            font-size: 15px;
         }
         #footer a {
             float: right;
             text-decoration: none;
             color: #818181;
-            margin-top: 10px;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -39,9 +43,22 @@
     })
     function res() {
         var wid = window.innerWidth;
+        console.log(wid);
         var element = document.getElementById("footer");
-        element.style.width=wid * 0.5 + "px";
-    }
+        if (wid <= 530) {
+            element.style.width = wid + "px";
+        }else if (530 < wid < 1060) {
+            var temp = (wid - 530)/2;
+            element.style.margin = "0 "+ temp + "px";
+            element.style.width = "500px";
+        }
+        else {
+            var temp = 0.25 * wid;
+            element.style.width=wid * 0.5 + "px";
+            element.style.margin = "0 "+ temp + "px";
+        }
+    }7
+//
 </script>
 </body>
 </html>

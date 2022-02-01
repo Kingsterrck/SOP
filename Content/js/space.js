@@ -27,7 +27,6 @@ $(document).ready(function(){
         success: function(data){
             var splitedData = data.split("¡");
             var temp;
-            console.log(temp);
             $("#topName").html(splitedData[0]);
             if (splitedData[1] == 1) {
                 temp = "male";
@@ -38,6 +37,7 @@ $(document).ready(function(){
             $("#ageDisplay").html(splitedData[2]);
             $("#heightDisplay").html(splitedData[3]+"cm");
             $("#weightDisplay").html(splitedData[4]+"kg");
+            document.title=splitedData[0]+"'s homepage | SOP";
         }
     })
 })

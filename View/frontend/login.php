@@ -1,5 +1,6 @@
 <?php
 include_once "headerNLI_fsm.php";
+include_once "footer.php";
 ?>
 
 <!DOCTYPE html>
@@ -7,6 +8,7 @@ include_once "headerNLI_fsm.php";
 <head>
     <meta charset="UTF-8">
     <title>Log in | SOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/login.css">
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/get_in.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>

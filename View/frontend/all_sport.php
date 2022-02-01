@@ -43,13 +43,13 @@ if (isset($_SESSION["email"])) {
                     </div>
                 </a>
                 <a href="#">
-                    <div class="sportIcon">
+                    <div class="sportIcon" id="tableTennis">
                         <h3>乒乓球</h3>
                     </div>
                 </a>
                 <a href="#">
-                    <div class="sportIcon">
-                        <h3>羽毛球</h3>
+                    <div class="sportIcon" id="baseball">
+                        <h3>棒球</h3>
                     </div>
                 </a>
                 <a href="#">

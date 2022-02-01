@@ -2,7 +2,7 @@ $(document).ready(function(){
     $.ajax({
         type:"POST",
         url: "../../Controller/MainpageController.php",
-        data: "gameSearchInit=1",
+        data: "gameSearchInitialize=1",
         success: function () {
 
         }
@@ -15,10 +15,15 @@ window.addEventListener("resize",function () {
 function GSresponsiveness() {
     var winWidth = window.innerWidth;
     if (winWidth > 1200){
-        $("#gameInfo").css("width",0.63*winWidth+"px");
-        $("#squadInfo").css("width",0.27*winWidth+"px");
+        $("#gameInfo").css("width",0.61*winWidth+"px");
+        $("#squadInfo").css("width",0.25*winWidth+"px");
     } else {
-        $("#gameInfo").css("width",0.665*winWidth+"px");
-        $("#squadInfo").css("width",0.285*winWidth+"px");
+        $("#gameInfo").css("width",0.66*winWidth+"px");
+        $("#squadInfo").css("width",0.28*winWidth+"px");
     }
+}
+function toggleGameDisplay(element) {
+    $(".gameTab").removeClass("active");
+    $(element).toggleClass("active");
+    x
 }

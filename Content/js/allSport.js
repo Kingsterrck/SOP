@@ -4,9 +4,8 @@ $(document).ready(function(){
 
 function linkSportInfo(sportName) {
     $.ajax({
-        type: "POST",
         url: "../../Controller/mainpageController.php",
-        data: "sportLink="+sportName,
+        data: "sportNameForLink="+sportName,
         success: function(data){
             if (data == 0) {
                 window.location.href="gameSearch.php"

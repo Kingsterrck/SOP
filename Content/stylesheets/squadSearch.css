@@ -1,0 +1,9 @@
+#squadFormContainer {
+    overflow: hidden;
+    zoom: 1;
+    margin: 20px 0;
+}
+
+#squadFormContainer>form:first-child {
+    float: left;
+}

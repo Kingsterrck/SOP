@@ -35,7 +35,7 @@ function getGameInfoBySport($sportName) {
                 $row = $gameType->fetch_array();
                 $gameTypeId = $row["id"];
 
-                $stmt = $GLOBALS["conn"]->prepare("");
+                $stmt = $GLOBALS["conn"]->prepare("SELECT title, game_time, location FROM game_info ");
 
             }
         }

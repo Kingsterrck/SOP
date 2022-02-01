@@ -8,6 +8,8 @@ if (isset($_SESSION["email"])) {
 ?>
 <!DOCTYPE html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
         <title>Feature unavailable | SOP</title>
         <style>
             #main {

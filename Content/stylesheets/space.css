@@ -2,6 +2,8 @@
     width: 100%; /* write js later to change according to resize*/
     height: 200px;
     background: #151515;
+    overflow: hidden;
+    zoom: 1;
 }
 #nameDisplayBox {
     top:70px;

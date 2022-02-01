@@ -1,10 +1,11 @@
 <?php
 session_start();
-if ($_SESSION["email"]) {
+if (isset($_SESSION["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
     include_once "headerNLI_fsm.php";
 }
+include_once "footer.php";
 //$sport = $_GET['sportName'];
 //echo "<input type='text' hidden='hidden' value='$sport' id='sportName'>";
 //?>
@@ -16,18 +17,20 @@ if ($_SESSION["email"]) {
         <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/mainpage.css">
         <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/loggedInMainpage.css">
         <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/gameSearch.css">
+<!--        jQuery-->
+        <script src="../../Content/js/jQuery%201.8.js"></script>
     </head>
     <body>
     <div id="maxContainer">
         <div id="nameBanner">
-
+            <h1 id="sportNameDisplay">SPORTNAME</h1>
         </div>
         <div id="mainContent">
             <div id="gameInfo">
                 <div id="gameSelectorContainer">
-                    <a href="#" class="active"><h1>Today's games</h1></a>
-                    <a href="#"><h1>future games</h1></a>
-                    <a href="#"><h1>past games</h1></a>
+                    <a href="#"><h1 class="gameTab active" onclick="toggleGameDisplay(this)" dataId="0">今日比赛</h1></a>
+                    <a href="#"><h1 class="gameTab" onclick="toggleGameDisplay(this)" dataId="1">未来比赛</h1></a>
+                    <a href="#"><h1 class="gameTab" onclick="toggleGameDisplay(this)" dataId="2">过往比赛</h1></a>
                 </div>
                 <div class="gameInfoDisplay">
                     <h5 class="gameInfoDisplayTitle">title</h5>
@@ -48,23 +51,21 @@ if ($_SESSION["email"]) {
                 </div>
             </div>
             <div id="squadInfo">
+                <h1>战队</h1>
+                <div id="squadInfoContainer">
+                    <div class="indSquad">
+                        <h3>1</h3>
+                        <p>SQUAD NAME</p>
+                    </div>
+                </div>
+
 
             </div>
         </div>
     </div>
-<!--    <script>-->
-<!--        $(document).ready(function () {-->
-<!--            $.ajax({-->
-<!--                type: "GET",-->
-<!--                url: "../../Controller/mainpageController.php",-->
-<!--                success: function (data) {-->
-<!--                    -->
-<!--                }-->
-<!--            })-->
-<!--        })-->
-<!--    </script>-->
     <script src="../../Content/js/space.js"></script>
     <script src="../../Content/js/gameSearch.js"></script>
     <script src="../../Content/js/mainpage.js"></script>
     </body>
 </html>
+

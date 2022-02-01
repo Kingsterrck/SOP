@@ -11,6 +11,7 @@ include_once "header_fsm_dropdown.php"
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your homepage | SOP</title>
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/space.css">
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/mainpage.css">
