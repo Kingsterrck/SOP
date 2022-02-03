@@ -17,7 +17,6 @@ if (isset($_SESSION["email"])) {
                 padding-top:130px;
             }
             #main h1 {
-
                 color: gold;
             }
             * {

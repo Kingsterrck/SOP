@@ -5,6 +5,7 @@ if (isset($_SESSION["email"])) {
 } else {
     include_once "headerNLI_fsm.php";
 }
+include_once "footer.php";
 ?>
 <!DOCTYPE html>
 <head>

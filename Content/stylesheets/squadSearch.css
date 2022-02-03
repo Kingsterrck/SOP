@@ -7,3 +7,39 @@
 #squadFormContainer>form:first-child {
     float: left;
 }
+#squadFormContainer>form:last-child {
+    float: right;
+}
+#squadSportSelect select {
+    background-color: #232323;
+    border-radius: 10px;
+    width: 130px;
+    height:30px;
+    outline: white 3px solid;
+    z-index: 10;
+    margin: 20px 10px;
+}
+#squadSportSelect option {
+    color: #818181;
+    text-align: left;
+    line-height: 30px;
+    padding-left: 10px;
+}
+#squadInfoHeader {
+    overflow: hidden;
+    zoom: 1;
+}
+#squadInfoHeader>div {
+    float: left;
+    padding-bottom: 20px;
+    border-bottom: gray 3px solid;
+}
+.squadInfoCarrier {
+    overflow: hidden;
+    zoom: 1;
+    line-height: 40px;
+    border-bottom: dimgray 2px solid;
+}
+.squadInfoCarrier>div {
+    float:left;
+}

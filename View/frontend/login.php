@@ -20,7 +20,9 @@ include_once "footer.php";
             <input class="loginBox" type="text" name="email" placeholder="邮箱">
             <input class="loginBox" type="password" name="uPassword" placeholder="密码">
             <input type="text" name="type" value="login" hidden="hidden">
-            <div><a href="#">忘记密码</a></div>
+            <div>
+                <a href="#" onclick="alert('Send your email address to cgs-sop@protonmail.com to retrieve your password');">忘记密码</a>
+            </div>
             <a href="#"><input class="loginBox" type="submit" value="登录"></a>
         </form>
         <a href="sign_up.php" class="loginBox">没有账号？立刻注册</a>

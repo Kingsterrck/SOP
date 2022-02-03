@@ -33,7 +33,7 @@ if (isset($_POST["getUser"])) {
 }
 
 //in squadSearch.php, user searches the squads using the search box
-if (isset($_POST["searchForSquad"])) {
+if (isset($_GET["searchForSquad"])) {
 
 }
 
@@ -58,4 +58,8 @@ function getUsername() {
     error_log($userId);
     $username = getTheUserName($userId);
     return $username[1];
+}
+
+function searchSquadByName($name) {
+
 }
