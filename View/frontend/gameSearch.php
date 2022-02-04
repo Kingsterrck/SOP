@@ -24,6 +24,9 @@ include_once "footer.php";
     <div id="maxContainer">
         <div id="nameBanner">
             <h1 id="sportNameDisplay">SPORTNAME</h1>
+            <a href="createGame.php">
+                <div id="createGameButtonHolyShit"><b>创建比赛</b></div>
+            </a>
         </div>
         <div id="mainContent">
             <div id="gameInfo">

@@ -6,7 +6,7 @@ function squadSeachName($name) {
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM squad WHERE squad_name = ?")
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM squad WHERE squad_name = ?");
         $stmt->bind_param("s",$p_name);
         $p_name = $name;
         $stmt->execute();

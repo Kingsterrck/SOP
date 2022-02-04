@@ -1,0 +1,83 @@
+#squadInfoDisplay {
+    overflow: hidden;
+    zoom: 1;
+    padding-bottom: 20px;
+    margin-top: 15px;
+    border-bottom: gray 1px solid;
+}
+
+.squadInfoDisplayContainer {
+    float: left;
+    text-align: center;
+}
+#players {
+    overflow: hidden;
+    zoom: 1;
+    margin-bottom: 20px;
+}
+#players>h1 {
+    margin-bottom: 10px;
+}
+.playerDisplay {
+    float: left;
+    margin-right: 20px;
+    border: gray 3px solid;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+.playerDisplay h4 {
+    color: gold;
+    margin-bottom: 5px;
+}
+.playerInfoDisplay {
+    overflow: hidden;
+    zoom: 1;
+
+}
+.playerDisplay p {
+    color: gray;
+}
+.playerDisplay h6 {
+    color: white;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.playerInfoDisplayContainer {
+    float: left;
+    width: 100px;
+}
+/*below is the game part*/
+#gameSelectorContainer {
+    overflow: hidden;
+    zoom: 1;
+    padding-top: 20px;
+    border-top: gray 2px solid;
+}
+#gameSelectorContainer h1 {
+    float: left;
+    margin-right: 20px;
+    color: #876A11;
+}
+.active {
+    color: gold !important;
+}
+.gameInfoDisplay {
+    overflow: hidden;
+    zoom: 1;
+    height:55px;
+    background-color: #323232;
+    border-radius: 10px;
+    margin: 15px 0;
+    color: white;
+}
+.gameInfoDisplayTitle {
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.gameInfoDisplayElement {
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}

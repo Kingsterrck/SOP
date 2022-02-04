@@ -3,7 +3,23 @@
     margin-top:80px;
     margin-left: 50px;
 }
-
+#nameBanner a {
+    overflow: hidden;
+    zoom: 1;
+}
+#createGameButtonHolyShit {
+    float: right;
+    margin-top:80px;
+    margin-right: 50px;
+    width: 200px;
+    line-height: 60px;
+    text-align: center;
+    background: #FDC830;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 10px;
+    font-size: 20px;
+}
 #gameSelectorContainer {
     overflow: hidden;
     zoom: 1;

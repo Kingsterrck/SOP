@@ -25,5 +25,4 @@ function GSresponsiveness() {
 function toggleGameDisplay(element) {
     $(".gameTab").removeClass("active");
     $(element).toggleClass("active");
-    x
 }
