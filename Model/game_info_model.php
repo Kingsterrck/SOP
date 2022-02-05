@@ -41,3 +41,31 @@ function getGameInfoBySport($sportName) {
         }
     }
 }
+function insertNewGame($title, $sport, $gameTime, $rp, $location, $description) {
+    $p_title = "";
+    $p_sport = "";
+    $p_gameTime = "";
+    $p_rp = "";
+    $p_location = "";
+    $p_description = "";
+    if ($GLOBALS["conn"]->connect_error) {
+        die("failed" . $GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("INSERT INTO game_info(title, game_type_id, game_time, recommend_rp, location, intro) values(?,?,?,?,?,?)");
+        $stmt->bind_param("sisiss", $p_title, $p_sport, $p_gameTime, $p_rp, $p_location, $p_description);
+        $p_title = $title;
+        $p_sport = $sport;
+        $p_gameTime = $gameTime;
+        $p_rp = $rp;
+        $p_location = $location;
+        $p_description = $description;
+        error_log("executing!!");
+
+        $stmt->execute();
+        if ($stmt->error) {
+            return [1, $stmt->error];
+        } else {
+            return [2, $stmt->affected_rows];
+        }
+    }
+}

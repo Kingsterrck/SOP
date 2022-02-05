@@ -1,4 +1,39 @@
 input[type="text"] {
-    background-color: #323232;
-
+    width: 400px;
+    line-height: 60px;
+    color: white;
+    font-size: 30px;
+}
+select {
+    width: 250px;
+    height: 60px;
+}
+form * {
+    font-size: 25px;
+    color: white;
+}
+form>* {
+    overflow: hidden;
+    zoom: 1;
+}
+.gameInfoInput {
+    background: #323232;
+    border-radius: 10px;
+    float: left;
+    margin: 20px 30px;
+    line-height: 60px;
+}
+input[type="datetime-local"] {
+    width: 400px;
+}
+button {
+    background: linear-gradient(to right, #F37335, #FDC830);
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+    height: 60px;
+    border-radius: 10px;
+}
+button span {
+    z-index: 1;
 }

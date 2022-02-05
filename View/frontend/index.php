@@ -71,7 +71,7 @@ if (isset($_SESSION["email"])) {
     <body>
     <div id="maxBox">
         <div id="container">
-            <h1>Play sport, like never before</h1>
+            <h1>Play sports, <br>like never before</h1>
             <p>Search for games and join, browse sports and tournaments</p>
             <div id="buttonList">
                 <a href="sign_up.php">

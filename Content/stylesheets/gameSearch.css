@@ -72,7 +72,12 @@
 .indSquad {
     overflow: hidden;
     zoom: 1;
+    padding: 10px 5px;
 }
 .indSquad>* {
     float: left;
+}
+.indSquad h3 {
+    color: gold;
+    width: 30px;
 }

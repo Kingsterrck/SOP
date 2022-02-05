@@ -56,13 +56,31 @@ include_once "footer.php";
             <div id="squadInfo">
                 <h1>战队</h1>
                 <div id="squadInfoContainer">
-                    <div class="indSquad">
-                        <h3>1</h3>
-                        <p>SQUAD NAME</p>
-                    </div>
+                    <a href="#">
+                        <div class="indSquad">
+                            <h3>1</h3>
+                            <p>SQUAD NAME</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="indSquad">
+                            <h3>1</h3>
+                            <p>SQUAD NAME</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="indSquad">
+                            <h3>1</h3>
+                            <p>SQUAD NAME</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="indSquad">
+                            <h3>1</h3>
+                            <p>SQUAD NAME</p>
+                        </div>
+                    </a>
                 </div>
-
-
             </div>
         </div>
     </div>
