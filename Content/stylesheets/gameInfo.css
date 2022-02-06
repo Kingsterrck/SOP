@@ -1,0 +1,56 @@
+#mainContent {
+    overflow: hidden;
+    zoom: 1;
+}
+#mainContent>div {
+    float: left;
+}
+#gameTitle {
+    margin-top: 80px;
+    margin-left: 50px;
+}
+#info {
+    margin-left: 10px;
+}
+#info>div {
+    height: 80px;
+    margin: 10px 0;
+}
+#info p {
+    font-size: 15px;
+    color: gray;
+}
+#info h4 {
+    font-size: 35px;
+    color: white;
+}
+#people {
+    overflow: hidden;
+    zoom: 1;
+}
+.playerContainer {
+    width: 300px;
+    float: left;
+    height: 100px;
+    border-radius: 10px;
+    background: #212F3D;
+    box-shadow: 0px 0px 15px 2px rgba(50,50,50 ,0.5);
+    margin: 10px;
+    overflow: hidden;
+    zoom: 1;
+}
+.playerContainer>* {
+    float: left;
+}
+.profile-pic {
+    margin: 10px;
+    height: 80px;
+}
+.playerContainer h3 {
+    font-size: 25px;
+    color: white;
+    margin: 10px 0;
+}
+.playerContainer h5 {
+    font-size: 18px;
+}
