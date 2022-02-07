@@ -1,7 +1,7 @@
 <?php
 include_once "header_fsm_dropdown.php";
 session_start();
-session_set_cookie_params(86400);
+//session_set_cookie_params(86400);
 //if (!isset($_SESSION[""])){
 //    header("Location: index.php");
 //}

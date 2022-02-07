@@ -37,3 +37,6 @@ button {
 button span {
     z-index: 1;
 }
+#gameTypeSelector {
+    display: none;
+}

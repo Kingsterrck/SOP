@@ -1,4 +1,13 @@
 $(document).ready(function(){
+    $.ajax({
+        type: "POST",
+        url: "../../Controller/gameController.php",
+        data: "squadSearchGetSport=1",
+        success: function (data) {
+            $("#squadSportSelect select").html(data);
+        }
+    })
+
     $("#squadSearchBox").submit(function () {
         var squadTarget = $("#squadSearchBox").serialize();
         $.ajax({

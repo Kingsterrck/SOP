@@ -25,6 +25,9 @@ include_once "footer.php";
                 <select required class="gameInfoInput" name="sport" id="sportSelectOption">
                     <option>SPORT</option>
                 </select>
+                <select required class="gameInfoInput" name="gameType" id="gameTypeSelector">
+                    <option></option>
+                </select>
             </div>
             <div class="row">
                 <input required class="gameInfoInput" name="gameTime" type="datetime-local" id="timeInput">

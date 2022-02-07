@@ -35,37 +35,46 @@ function getGameInfoBySport($sportName) {
                 $row = $gameType->fetch_array();
                 $gameTypeId = $row["id"];
 
-                $stmt = $GLOBALS["conn"]->prepare("SELECT title, game_time, location FROM game_info ");
+                $stmt = $GLOBALS["conn"]->prepare("SELECT title, game_time, location FROM game_info WHERE game_time ");
 
             }
         }
     }
 }
-function insertNewGame($title, $sport, $gameTime, $rp, $location, $description) {
+function insertNewGame($title, $gameType, $gameTime, $rp, $location, $description) {
     $p_title = "";
-    $p_sport = "";
+    $p_gameType = "";
     $p_gameTime = "";
     $p_rp = "";
     $p_location = "";
     $p_description = "";
+    date_default_timezone_set('PRC');
+    $createTime = date("Y-m-d H:i:s");
+    $updateTime = date("Y-m-d H:i:s");
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("INSERT INTO game_info(title, game_type_id, game_time, recommend_rp, location, intro) values(?,?,?,?,?,?)");
-        $stmt->bind_param("sisiss", $p_title, $p_sport, $p_gameTime, $p_rp, $p_location, $p_description);
+        $stmt = $GLOBALS["conn"]->prepare("INSERT INTO game_info(title, game_type_id, game_time, recommend_rp, location, intro, create_time, update_time) values(?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sisissss", $p_title, $p_gameType, $p_gameTime, $p_rp, $p_location, $p_description, $createTime, $updateTime);
         $p_title = $title;
-        $p_sport = $sport;
+        $p_gameType = $gameType;
         $p_gameTime = $gameTime;
         $p_rp = $rp;
         $p_location = $location;
         $p_description = $description;
-        error_log("executing!!");
-
         $stmt->execute();
         if ($stmt->error) {
             return [1, $stmt->error];
         } else {
             return [2, $stmt->affected_rows];
         }
+    }
+}
+function getTodayGamesBySportTypeId($sport_type_id) {
+    $p_sport_type_id = "";
+    if ($GLOBALS["conn"]->connect_error) {
+        die("failed" . $GLOBALS["conn"]->connect_error);
+    } else {
+
     }
 }

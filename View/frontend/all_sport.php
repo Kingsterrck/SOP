@@ -24,12 +24,12 @@ include_once "footer.php";
             <h1>所有运动</h1>
             <div id="sportSelectContainer">
                 <a href="#">
-                    <div class="sportIcon" id="basketball">
+                    <div class="sportIcon" id="basketball" sportId="3">
                         <h3>篮球</h3>
                     </div>
                 </a>
                 <a href="#">
-                    <div class="sportIcon" id="volleyball">
+                    <div class="sportIcon" id="volleyball" sportId="5">
                         <h3>排球</h3>
                     </div>
                 </a>

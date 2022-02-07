@@ -7,6 +7,22 @@ $(document).ready(function(){
             $("#sportSelectOption").html(data);
         }
     })
+    $("#sportSelectOption").change(function(){
+        var sportIden = document.getElementById("sportSelectOption").value;
+        console.log(sportIden);
+        $.ajax({
+            type: "POST",
+            data: "createGameGameTypeRequest=" + sportIden,
+            url: "../../Controller/gameController.php",
+            success: function (data) {
+                console.log(data);
+                $("#gameTypeSelector").css("display","block");
+                $("#gameTypeSelector").html(data);
+            }
+        })
+    })
+
+
     $("#gameCreacion").submit(function () {
         var targetDate = document.getElementById("timeInput").value;
         document.getElementById("timeInput").type="text";
@@ -21,6 +37,7 @@ $(document).ready(function(){
             success: function(data) {
                 if (data == 1) {
                     alert("game successfully created, congrats");
+                    window.location.href="../../View/frontend/gameInfo.php";
                 } else {
                     alert("nooooo it doesnt work");
                 }

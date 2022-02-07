@@ -6,6 +6,12 @@ if (isset($_SESSION["email"])) {
     include_once "headerNLI_fsm.php";
 }
 include_once "footer.php";
+
+if (isset($_GET["sport"])) {
+    require_once "../../Controller/gameController.php";
+    $todayGameList = gameSearchStepOne($_GET["sport"]);
+    echo $todayGameList;
+}
 //$sport = $_GET['sportName'];
 //echo "<input type='text' hidden='hidden' value='$sport' id='sportName'>";
 //?>
