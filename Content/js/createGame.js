@@ -36,8 +36,20 @@ $(document).ready(function(){
             url: "../../Controller/gameController.php",
             success: function(data) {
                 if (data == 1) {
-                    alert("game successfully created, congrats");
-                    window.location.href="../../View/frontend/gameInfo.php";
+                    $.ajax({
+                        type: "POST",
+                        data: "createGameInsertIntoUserGame=true",
+                        url: "../../Controller/gameController.php",
+                        success: function (data) {
+                            console.log(data);
+                            if (data == 1) {
+                                alert("game successfully created, congrats");
+                                window.location.href="../../View/frontend/gameInfo.php";
+                            } else {
+                                alert("nope");
+                            }
+                        }
+                    })
                 } else {
                     alert("nooooo it doesnt work");
                 }

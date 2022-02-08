@@ -1,6 +1,12 @@
 <?php
-include_once "header_fsm_dropdown.php";
 session_start();
+if (isset($_SESSION["email"])) {
+    include_once "header_fsm_dropdown.php";
+} else {
+    echo "<script>alert('sign up or log in to view the mainpage');window.location.href='sign_up.php'</script>";
+}
+
+
 //session_set_cookie_params(86400);
 //if (!isset($_SESSION[""])){
 //    header("Location: index.php");

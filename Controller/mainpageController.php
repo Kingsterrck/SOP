@@ -25,10 +25,10 @@ if (isset($_POST["logout"])) {
 }
 if (isset($_POST["getUser"])) {
     $returnedUsername = getUsername();
-    error_log("fuck php");
     $returnedUsername->data_seek(0);
     $row = $returnedUsername->fetch_array();
     $tempName = $row["username"];
+    $_SESSION["username"] = $tempName;
     echo $tempName;
 }
 
@@ -56,7 +56,7 @@ function getUsername() {
     $userId = $_SESSION["email"];
     error_log("you're in 2");
     error_log($userId);
-    $username = getTheUserName($userId);
+    $username = getUsernameByEmail($userId);
     return $username[1];
 }
 

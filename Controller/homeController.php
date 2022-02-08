@@ -119,6 +119,12 @@ function checkLoginInfo($email,$uPassword) {
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) {
             //在userinfo里面有
+
+//            put user id into $_SESSION
+            $checkStatus[1]->data_seek(0);
+            $row = $checkStatus[1]->fetch_array();
+            $_SESSION["uid"] = $row["ID"];
+            error_log("session uid: ".$_SESSION["uid"]);
             return 1;
         } else {
             //没有

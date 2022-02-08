@@ -21,9 +21,15 @@ include_once "footer.php";
     <script src="../../Content/js/jQuery%201.8.js"></script>
 </head>
 <body>
+<?php
+if (isset($_GET["id"])) {
+    $temp = $_GET["id"];
+    echo "<input id='gameIdSubmission' value='$temp' hidden>";
+}
+?>
 <div id="maxContainer">
     <div id="nameBanner">
-        <h1 id="gameTitle">GAME TITLE</h1>
+        <h1 id="gameTitle"></h1>
 
     </div>
     <div id="mainContent">
@@ -33,20 +39,24 @@ include_once "footer.php";
                 <h4 id="sportDisplay">VOLLEY</h4>
             </div>
             <div>
+                <p>比赛类型</p>
+                <h4 id="sportDisplay">normal</h4>
+            </div>
+            <div>
                 <p>人数</p>
                 <h4 id="numberOfPlayerDisplay">4/12</h4>
             </div>
             <div>
                 <p>地点</p>
-                <h4 id="locationDisplay">GCGS</h4>
+                <h4 id="locationDisplay"></h4>
             </div>
             <div>
                 <p>简介</p>
-                <h4>aba aba aba</h4>
+                <h4 id="introDisplay"></h4>
             </div>
             <div>
                 <p>创建者</p>
-                <h4>Kingsterrck</h4>
+                <h4 id="creatorDisplay"></h4>
             </div>
         </div>
         <div id="people">

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_SESSION["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {

@@ -80,7 +80,7 @@ function spaceGetInfo($email) {
     }
 }
 
-function getTheUserName($email) {
+function getUsernameByEmail($email) {
     $p_email = "";
     if($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
