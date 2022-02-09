@@ -96,7 +96,7 @@ function getGameInfoByGameId($gameId) {
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("SELECT title, game_type_id, location, intro, creator FROM game_info WHERE id = ?");
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM game_info WHERE id = ?");
         $stmt->bind_param("i", $p_gameId);
         $p_gameId = $gameId;
         $stmt->execute();

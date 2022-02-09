@@ -44,7 +44,6 @@ if (isset($_POST["gameSearchSportNameSubmission"])) {
 if (isset($_POST["gameInfoGameIdSubmission"])) {
     $infoList = gameInfoStepOne($_POST["gameInfoGameIdSubmission"]);
     $temp = gameInfoExtract($infoList[1]);
-    error_log($temp);
     echo $temp;
 }
 
@@ -56,15 +55,21 @@ if (isset($_POST["createGameInsertIntoUserGame"])) {
         $createdGameIdList[1]->data_seek(0);
         $row = $createdGameIdList[1]->fetch_array();
         $createdGameId = $row["id"];
+        $_SESSION["linkGameId"] = $createdGameId;
         $ifInsert = InsertIntoUserGame($_SESSION["uid"], $createdGameId);
         if ($ifInsert[0] == 2) {
-            echo 1;
+            echo "1Ç".$_SESSION["linkGameId"];
         } else {
             error_log("abaaba ".$ifInsert[1]);
         }
     } else {
         error_log($createdGameIdList[1]);
     }
+}
+
+if (isset($_POST["gameInfoGetSportAndType"])&&isset($_SESSION["gameInfoGameTypeId"])) {
+    error_log("APEX LEGENDS SEASON 12");
+    echo gameInfoStepTwo($_SESSION["gameInfoGameTypeId"]);
 }
 
 
@@ -93,4 +98,31 @@ function gameSearchStepOne($sport_name) {
 }
 function gameInfoStepOne($id) {
     return getGameInfoByGameId($id);
+}
+
+function gameInfoStepTwo($id) {
+    $sportInfo = selectBySportTypeId($id);
+    if ($sportInfo[0] == 2) {
+        error_log($sportInfo[1]);
+        $sportInfo[1]->data_seek(0);
+        $row = $sportInfo[1]->fetch_array();
+        $maxPlayer = $row["max_player"];
+        $gameTypeName = $row["type_name"];
+        $sportTypeId = $row["sport_type_id"];
+        $result = $maxPlayer . "Ç" . $gameTypeName . "Ç";
+        error_log($sportTypeId);
+        $sportNameArray = selectBySportId($sportTypeId);
+        if ($sportNameArray[0] == 2) {
+            $target = $sportNameArray[1];
+            $target->data_seek(0);
+            $row = $target->fetch_array();
+            $sportName = $row["type_name"];
+            $result.= $sportName;
+            return $result;
+        } else {
+            error_log($sportNameArray[1]);
+        }
+    } else {
+        error_log($sportInfo[1]);
+    }
 }

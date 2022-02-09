@@ -42,9 +42,10 @@ $(document).ready(function(){
                         url: "../../Controller/gameController.php",
                         success: function (data) {
                             console.log(data);
-                            if (data == 1) {
+                            if (data[0] == 1) {
+                                var targetId = data.substring(2);
                                 alert("game successfully created, congrats");
-                                window.location.href="../../View/frontend/gameInfo.php";
+                                window.location.href="../../View/frontend/gameInfo.php?id="+targetId;
                             } else {
                                 alert("nope");
                             }

@@ -5,7 +5,7 @@ function selectBySportTypeId($sportTypeId) {
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("SELECT id, type_name FROM game_type WHERE sport_type_id = ?");
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM game_type WHERE id = ?");
         $stmt->bind_param("i",$p_sportTypeId);
         $p_sportTypeId = $sportTypeId;
         $stmt->execute();

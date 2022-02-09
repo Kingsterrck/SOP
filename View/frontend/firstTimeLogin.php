@@ -1,6 +1,6 @@
 <?php
 include_once "headerNLI_fsm.php";
-
+session_start();
 ?>
 <!DOCTYPE html>
 <head>
@@ -12,12 +12,6 @@ include_once "headerNLI_fsm.php";
     <script src="../../Content/js/jQuery%201.8.js"></script>
 </head>
 <body>
-<?php
-session_start();
-if(isset($_SESSION["email"])){
-    error_log($_SESSION["email"]);
-}
-?>
     <div id="mainBox">
         <div class="signUpUI" sequence="1">
             <form id="firstStepForm">

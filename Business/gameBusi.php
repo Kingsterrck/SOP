@@ -50,7 +50,6 @@ function gameSearchPrintGame($data) {
                     <h5 class='gameInfoDisplayElement'>$location</h5>
                 </div></a>";
     }
-    error_log("FINISHED");
     return $resultString;
 }
 function gameInfoExtract($data) {
@@ -59,6 +58,8 @@ function gameInfoExtract($data) {
     $title = $row["title"];
     $game_type_id = $row["game_type_id"];
     $_SESSION["gameInfoGameTypeId"] = $game_type_id;
+    error_log($game_type_id);
+    error_log($_SESSION["gameInfoGameTypeId"]);
     $location = $row["location"];
     $description = $row["intro"];
     $creator = $row["creator"];

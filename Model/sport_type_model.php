@@ -31,3 +31,20 @@ function selectAllSports() {
         }
     }
 }
+function selectBySportId($id) {
+    $p_id = "";
+    if ($GLOBALS["conn"]->connect_error) {
+        die("failed".$GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM sport_type WHERE ID = ?");
+        $stmt->bind_param("i",$p_id);
+        $p_id = $id;
+        error_log($stmt);
+        $stmt->execute();
+        if ($stmt->error) {
+            return [1, $stmt->error];
+        } else {
+            return [2, $stmt->get_result()];
+        }
+    }
+}

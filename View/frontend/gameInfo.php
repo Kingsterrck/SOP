@@ -25,6 +25,8 @@ include_once "footer.php";
 if (isset($_GET["id"])) {
     $temp = $_GET["id"];
     echo "<input id='gameIdSubmission' value='$temp' hidden>";
+} else {
+    echo "<script>alert('a game ID is required to display any information');window.location.href='all_sport.php'</script>";
 }
 ?>
 <div id="maxContainer">
@@ -36,11 +38,11 @@ if (isset($_GET["id"])) {
         <div id="info">
             <div>
                 <p>体育</p>
-                <h4 id="sportDisplay">VOLLEY</h4>
+                <h4 id="sportDisplay"></h4>
             </div>
             <div>
                 <p>比赛类型</p>
-                <h4 id="sportDisplay">normal</h4>
+                <h4 id="gameDisplay"></h4>
             </div>
             <div>
                 <p>人数</p>

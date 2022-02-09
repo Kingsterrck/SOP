@@ -1,4 +1,5 @@
 var dataIdList ="";
+const selectedSportList = [];
 $(document).ready(function(){
     $(".signUpUI").hide();
     $(".signUpUI[sequence='1']").show();
@@ -36,6 +37,7 @@ $(document).ready(function(){
         var selectedListStr = ""
         for (i=0;i<sportList.length;i++) {
             var temp = sportList[i].getAttribute("dataid");
+            selectedSportList.push(sportList[i].innerText);
             selectedListStr =  selectedListStr + temp +"¿";
         }
         selectedListStr = selectedListStr.substring(0,selectedListStr.length-1);//delete the last ¿
@@ -49,6 +51,7 @@ $(document).ready(function(){
                 $("#putItHere").html(data);
             }
         })
+        console.log(selectedSportList);
     })
 })
 var buttonList = document.getElementsByTagName("button");

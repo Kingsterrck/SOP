@@ -45,6 +45,7 @@ include_once "footer.php";
                     $temp = $_GET["sport"];
                     error_log($temp);
                     echo"<input id='sportNameSubmit' value='$temp' hidden='hidden'>";
+                    echo "<script>$('#sportNameDisplay').html($('#sportNameSubmit').val())</script>";
                 }
                 ?>
             </div>

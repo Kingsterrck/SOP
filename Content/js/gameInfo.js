@@ -1,5 +1,6 @@
 $(document).ready(function (){
     var gameId = $("#gameIdSubmission").val();
+    var maxNumberOfPlayers;
     $.ajax({
         type: "POST",
         url: "../../Controller/gameController.php",
@@ -11,6 +12,18 @@ $(document).ready(function (){
             $("#locationDisplay").html(splitedData[2]);
             $("#introDisplay").html(splitedData[3]);
             $("#creatorDisplay").html(splitedData[4]);
+            $.ajax({
+                type: "POST",
+                url: "../../Controller/gameController.php",
+                data: "gameInfoGetSportAndType=true",
+                success: function (data) {
+                    var paipai = data.split("Ç");
+                    console.log(paipai);
+                    $("#sportDisplay").html(paipai[2]);
+                    $("#gameDisplay").html(paipai[1]);
+                    maxNumberOfPlayers = paipai[0];
+                }
+            });
         }
     })
 
