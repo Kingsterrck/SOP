@@ -13,5 +13,29 @@ include_once "footer.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a squad | SOP</title>
     <link rel="icon" href="../../Content/imgsrc/icons/pageIcon.png">
+    <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/createSquad.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/mainpage.css">
 </head>
-<body></body>
+<body>
+<div id="maxContainer">
+    <div id="mainContent">
+        <h1>Create a squad</h1>
+        <form id="squadCreatingForm">
+            <input name="squadCreation" value="true" hidden>
+            <input class="squadInput" name="title" required type="text" placeholder="Title">
+            <select class="squadInput" required id="sportSelectOption" placeholder="sport"></select>
+            <select class="squadInput" required name="gameType" id="gameTypeSelector">
+                <option></option>
+            </select>
+            <input class="squadInput" name="description" type="text" placeholder="Description">
+            <div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="../../Content/js/mainpage.js"></script>
+<script src="../../Content/js/createSquad.js"></script>
+</body>

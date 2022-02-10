@@ -4,6 +4,7 @@ require_once "../Model/sport_type_model.php";
 require_once "../Business/gameBusi.php";
 require_once "../Model/gameTypeModel.php";
 require_once "../Model/user_game_model.php";
+require_once "../Model/squadModel.php";
 session_start();
 
 if (isset($_POST["createGameInitialize"])) {
@@ -72,6 +73,10 @@ if (isset($_POST["gameInfoGetSportAndType"])&&isset($_SESSION["gameInfoGameTypeI
     echo gameInfoStepTwo($_SESSION["gameInfoGameTypeId"]);
 }
 
+if (isset($_POST["squadCreation"])&&isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["description"])) {
+    echo creatingNewSquad($_SESSION["username"], $_POST["title"], $_POST["gameType"], $_POST["description"]);
+}
+
 
 function sportListRetrivial() {
     return selectAllSports();
@@ -96,6 +101,7 @@ function gameSearchStepOne($sport_name) {
         echo $gameList[0];
     }
 }
+
 function gameInfoStepOne($id) {
     return getGameInfoByGameId($id);
 }
@@ -124,5 +130,16 @@ function gameInfoStepTwo($id) {
         }
     } else {
         error_log($sportInfo[1]);
+    }
+}
+
+function creatingNewSquad($creator, $title, $game_type_id, $description) {
+    $createTime = date("Y-m-d H:i:s");
+    $updateTime = date("Y-m-d H:i:s");
+    $insertStatus = createNewSquad($creator, $title, $game_type_id,$description, $createTime, $updateTime);
+    if ($insertStatus[0] == 2) {
+        return 1;
+    } else {
+        error_log($insertStatus[1]);
     }
 }

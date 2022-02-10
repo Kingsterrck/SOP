@@ -33,6 +33,6 @@ function fuseOccuPos($data) {
         $nameOfPos = $row["position_name"];
         $resultString .= "<option>$nameOfPos</option>";
     }
-    $resultString = "<select class='shortLoginBox'>$resultString</select>";
+    $resultString = "<div><select class='shortLoginBox' style='float: none'>$resultString</select></div>";
     return $resultString;
 }
