@@ -73,6 +73,7 @@ if (isset($_POST["gameInfoGetSportAndType"])&&isset($_SESSION["gameInfoGameTypeI
     echo gameInfoStepTwo($_SESSION["gameInfoGameTypeId"]);
 }
 
+//creating a squad with createSquad.php
 if (isset($_POST["squadCreation"])&&isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["description"])) {
     echo creatingNewSquad($_SESSION["username"], $_POST["title"], $_POST["gameType"], $_POST["description"]);
 }
@@ -109,15 +110,9 @@ function gameInfoStepOne($id) {
 function gameInfoStepTwo($id) {
     $sportInfo = selectBySportTypeId($id);
     if ($sportInfo[0] == 2) {
-        error_log($sportInfo[1]);
-        $sportInfo[1]->data_seek(0);
-        $row = $sportInfo[1]->fetch_array();
-        $maxPlayer = $row["max_player"];
-        $gameTypeName = $row["type_name"];
-        $sportTypeId = $row["sport_type_id"];
-        $result = $maxPlayer . "Ç" . $gameTypeName . "Ç";
-        error_log($sportTypeId);
-        $sportNameArray = selectBySportId($sportTypeId);
+        $holder = $sportInfo[1];
+        $result = extractGameInfo($holder);
+        $sportNameArray = selectBySportId($GLOBALS["sportTypeId"]);
         if ($sportNameArray[0] == 2) {
             $target = $sportNameArray[1];
             $target->data_seek(0);

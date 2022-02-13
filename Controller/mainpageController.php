@@ -56,7 +56,7 @@ function getUsername() {
     $userId = $_SESSION["email"];
     error_log("you're in 2");
     error_log($userId);
-    $username = getUsernameByEmail($userId);
+    $username = selectByEmail($userId);
     return $username[1];
 }
 

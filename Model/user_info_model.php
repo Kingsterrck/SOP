@@ -24,7 +24,7 @@ function selectUserByUsernameAndPassword($email, $uPassword) {
 }
 
 //first step of first time logging in
-function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime) {
+function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime, $process) {
     $p_email = "";
     $p_uPassword = "";
     $p_username = "";
@@ -35,12 +35,13 @@ function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $
     $p_weight = "";
     $p_createdTime = "";
     $p_updatedTime = "";
+    $p_process = "";
 
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("insert into userinfo(email,u_password,username,phoneNum,gender,age,height,weight,createdTime,updatedTime) values(?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssiiiiss", $p_email, $p_uPassword, $p_username, $p_phoneNum, $p_gender, $p_age, $p_height, $p_weight, $p_createdTime, $p_updatedTime);
+        $stmt = $GLOBALS["conn"]->prepare("insert into userinfo(email,u_password,username,phoneNum,gender,age,height,weight,createdTime,updatedTime, process) values(?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssiiiissi", $p_email, $p_uPassword, $p_username, $p_phoneNum, $p_gender, $p_age, $p_height, $p_weight, $p_createdTime, $p_updatedTime, $p_process);
 
         $p_email = $email;
         $p_uPassword = $uPassword;
@@ -52,6 +53,7 @@ function insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $
         $p_weight = $weight;
         $p_createdTime = $createdTime;
         $p_updatedTime = $updatedTime;
+        $p_process = $process;
 
             $stmt->execute();
         error_log($stmt->error);
@@ -80,12 +82,12 @@ function spaceGetInfo($email) {
     }
 }
 
-function getUsernameByEmail($email) {
+function selectByEmail($email) {
     $p_email = "";
     if($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("select username from userinfo where email=?");
+        $stmt = $GLOBALS["conn"]->prepare("select * from userinfo where email=?");
         $stmt->bind_param("s",$p_email);
         $p_email = $email;
         $stmt->execute();
@@ -96,6 +98,7 @@ function getUsernameByEmail($email) {
         }
     }
 }
+
 function updateTheProcess($email, $processUpdate) {
     $p_email = "";
     $p_processUpdate = "";
@@ -114,3 +117,4 @@ function updateTheProcess($email, $processUpdate) {
         }
     }
 }
+

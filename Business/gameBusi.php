@@ -66,3 +66,18 @@ function gameInfoExtract($data) {
     $result = $title . "ç" . $game_type_id . "ç" . $location . "ç" . $description . "ç" . $creator;
     return $result;
 }
+
+function extractGameInfo($data) {
+    $GLOBALS["maxPlayer"] = "";
+    $GLOBALS["gameTypeName"] ="";
+    $result = "";
+    for ($i = 0;$i<$data->num_rows;$i++) {
+        $data->data_seek($i);
+        $row = $data->fetch_array();
+        $GLOBALS["maxPlayer"] = $row["max_player"];
+        $GLOBALS["gameTypeName"] = $row["type_name"];
+        $GLOBALS["sportTypeId"] = $row["sport_type_id"];
+    }
+    $result = $GLOBALS["maxPlayer"] . "Ç" . $GLOBALS["gameTypeName"] . "Ç";
+    return $result;
+}

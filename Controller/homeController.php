@@ -5,6 +5,7 @@ require_once "../Model/user_info_model.php";
 require_once "../Business/HomeBusi.php";
 require_once "../Model/sport_type_model.php";
 require_once "../Model/occupationPositionModel.php";
+require_once "../Model/ranked_pointsModel.php";
 
 session_start();
 session_set_cookie_params(86400);
@@ -18,11 +19,11 @@ if(isset($_POST["sportType"])){
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
     error_log("post email");
     $temp = checkLoginInfo($_POST["email"],$_POST["uPassword"]);
-    if ($temp == 1) {
+    if ($temp == 1) { //not the first time
         $_SESSION["email"] = $_POST["email"];
         $_SESSION["password"] = $_POST["uPassword"];
         echo 1;
-    } else if ($temp == 2) {
+    } else if ($temp == 2) {//log in for the first time
         $_SESSION["email"] = $_POST["email"];
         $_SESSION["password"] = $_POST["uPassword"];
         echo 2;
@@ -48,7 +49,7 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) 
 //first step of first time logging in entrance
 if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["processUpdate"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
     error_log("submitted");
-    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],isset($_POST["processUpdate"]),$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"]);
+    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["processUpdate"]);
     if ($temp == 1) {
         echo 1;
     } else {
@@ -63,6 +64,19 @@ if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["proce
 if (isset($_POST["selectedList"])&&isset($_POST["processUpdate"])) {
     $listOfPos = getPositionName($_POST["selectedList"]);
     echo $listOfPos;
+}
+
+if (isset($_POST["rp"])&&isset($_POST["position"])) {
+    $temp = selectByEmail($_SESSION["email"]);
+    if ($temp[0] == 2) {
+        $_SESSION["uid"] = extractId($temp[1]);
+        $createStatus = userPositionCreation($_SESSION["uid"],$_POST["position"], $_POST["rp"]);
+        if ($createStatus[0] == 2) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
 }
 
 
@@ -141,12 +155,12 @@ function checkLoginInfo($email,$uPassword) {
 }
 
 //first step of first time logging in
-function submitUserInfo($email, $uPassword, $processUpdate, $username, $phoneNum, $gender, $age, $height, $weight) {
+function submitUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $processUpdate) {
     date_default_timezone_set('PRC');
     $createdTime = date("Y-m-d H:i:s");
     $updatedTime = date("Y-m-d H:i:s");
     //TODO select from userinfo if the user is duplicated
-    $checkStatus = insertIntoUserInfo($email, $uPassword, $processUpdate, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime);
+    $checkStatus = insertIntoUserInfo($email, $uPassword, $username, $phoneNum, $gender, $age, $height, $weight, $createdTime, $updatedTime, $processUpdate);
     if ($checkStatus[0] == 2) {
         error_log($checkStatus[1]);
         if ($checkStatus[1] >= 1) { //successfully inserted
@@ -179,8 +193,10 @@ function getPositionName($str) {
         if ($temp[0]==1){
             return $temp[1];
         }else{
-            $processedTemp = fuseOccuPos($temp[1]);
-            $listOfPosition .= $processedTemp . "¡";
+            $RPname = selectFromRP();
+            error_log($RPname[0]);
+            $processedTemp = fuseOccuPos($temp[1], $RPname[1]);
+            $listOfPosition .= $processedTemp;
         }
     }
     return $listOfPosition;
@@ -189,4 +205,8 @@ function getPositionName($str) {
 function updateUserProcess($email, $processUpdate) {
     $a = updateTheProcess($email, $processUpdate)[0];
     return $a;
+}
+
+function userPositionCreation($userId, $game_pos_id, $level) {
+    return insertIntoUserPosition($userId, $game_pos_id, $level);
 }

@@ -49,9 +49,39 @@ $(document).ready(function(){
             success: function (data) {
                 nextPage2();
                 $("#putItHere").html(data);
+                var titleList = document.getElementsByClassName("titleTarget");
+                for (i = 0;i<titleList.length;i++) {
+                    titleList[i].innerHTML = selectedSportList[i];
+                }
             }
         })
         console.log(selectedSportList);
+    })
+    $(".signUpUI[sequence='3'] form").submit(function(){
+        var listOfSelection = $(".eachOfTheSport");
+        // listOfSelection.each(function (index,item){
+        var submitData = "";
+        // })
+        for (i = 0;i<listOfSelection.length;i++) {
+            submitData = listOfSelection[i].serialize();
+            console.log(submitData);
+            console.log("nop");
+            $.ajax({
+                type: "POST",
+                url: "../../Controller/homeController.php",
+                data: submitData,
+                success: function(data) {
+                    console.log(data);
+                    if (data == 0) {
+                        alert("nope");
+                        return false;
+                    }
+                }
+            })
+            return false;
+        }
+        nextPage3();
+        return false;
     })
 })
 var buttonList = document.getElementsByTagName("button");
@@ -72,4 +102,7 @@ function nextPage2() {
     $(".signUpUI[sequence='2']").hide();
     $(".signUpUI[sequence='3']").show();
 }
-
+function nextPage3() {
+    $(".signUpUI[sequence='3']").hide();
+    $(".signUpUI[sequence='4']").show();
+}

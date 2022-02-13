@@ -47,21 +47,11 @@ session_start();
         <div class="signUpUI" sequence="3">
             <form>
                 <h1>选择你的级别和位置</h1>
-                <div id="putItHere" class="shortLoginBoxContainer">
-<!--                    <div>-->
-<!--                        <h4>sport name</h4>-->
-<!--                        <select class="shortLoginBox">-->
-<!--                            <option>position 1</option>-->
-<!--                            <option>position 2</option>-->
-<!--                            <option>position 3</option>-->
-<!--                            <option>position 4</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-                </div>
-
+                <div id="putItHere" class="shortLoginBoxContainer"></div>
+                <input type="submit" id="stepThreeSubmitButton" value="submit">;
             </form>
-
         </div>
+        <div class="signUpUI" sequence="4"></div>
     </div>
 <script src="../../Content/js/firstTimeLogin.js"></script>
 </body>
