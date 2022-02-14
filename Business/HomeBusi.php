@@ -42,7 +42,7 @@ function fuseOccuPos($data, $data2) { //data is the occupation position and data
         $levelNum = $row["lowest_point"];
         $resultString2 .= "<option value='$levelNum'>$levelName</option>";
     }
-    $resultString = "<div class='eachOfTheSport'><h2 class='titleTarget'></h2><select class='shortLoginBox' name='rp'>$resultString2</select><select class='shortLoginBox' style='float: none' name='position'>$resultString</select></div>";
+    $resultString = "<div class='eachOfTheSport'><form class='indSportSelector'><h2 class='titleTarget'></h2><select class='shortLoginBox' name='rp'>$resultString2</select><select class='shortLoginBox' style='float: none' name='position'>$resultString</select></form></div>";
     return $resultString;
 }
 function extractId($data) {

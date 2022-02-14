@@ -1,7 +1,7 @@
 <?php
 include_once "headerNLI_fsm.php";
 include_once "footer.php";
-if (isset($_SESSION["email"])) {
+if (isset($_COOKIE["email"])) {
     header("location: loggedInMainpage.php");
 }
 ?>

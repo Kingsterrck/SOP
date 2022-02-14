@@ -5,8 +5,8 @@ require_once "../Model/game_info_model.php";
 session_set_cookie_params(86400);
 session_start();
 
-if (isset($_POST["type"])&&isset($_SESSION["email"])) {
-    $temp = gettingSpaceInfo($_SESSION["email"]);
+if (isset($_POST["type"])&&isset($_COOKIE["email"])) {
+    $temp = gettingSpaceInfo($_COOKIE["email"]);
     $dataString = printPersonalData($temp);
     echo $dataString;
 }
@@ -20,6 +20,16 @@ if (isset($_POST["gameSearchInitialize"])) {
     $RENAMETHISVARIABLE = getGameInfo($_SESSION["sportNameRequest"]);
 }
 if (isset($_POST["logout"])) {
+//    random ppl's code on stackoverflow
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+        foreach($cookies as $cookie) {
+            $parts = explode('=', $cookie);
+            $name = trim($parts[0]);
+            setcookie($name, '', time()-1000);
+            setcookie($name, '', time()-1000, '/');
+        }
+    }
     session_destroy();
     return 0;
 }
@@ -53,7 +63,7 @@ function getGameInfo($sportName) {
 }
 
 function getUsername() {
-    $userId = $_SESSION["email"];
+    $userId = $_COOKIE["email"];
     error_log("you're in 2");
     error_log($userId);
     $username = selectByEmail($userId);

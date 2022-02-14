@@ -1,7 +1,7 @@
 <?php
 session_start();
-if ($_SESSION["email"]) {
-    error_log($_SESSION["email"]);
+if ($_COOKIE["email"]) {
+    error_log($_COOKIE["email"]);
 } else {
     error_log("it doesnt exist");
 }

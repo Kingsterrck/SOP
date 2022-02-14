@@ -2,7 +2,7 @@
 ##frontend
 **php** <br>
 `session_start();
-if (isset($_SESSION["email"])) {
+if (isset($_COOKIE["email"])) {
 include_once "header_fsm_dropdown.php";
 } else {
 include_once "headerNLI_fsm.php";

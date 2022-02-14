@@ -7,8 +7,9 @@ require_once "../Model/sport_type_model.php";
 require_once "../Model/occupationPositionModel.php";
 require_once "../Model/ranked_pointsModel.php";
 
-session_start();
-session_set_cookie_params(86400);
+session_start([
+    'cookie_lifetime' => 86400,
+]);
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
     return insertIntoClassics($_POST["author"],$_POST["title"],$_POST["category"],$_POST["year"],$_POST["isbn"]);
 }
@@ -17,14 +18,19 @@ if(isset($_POST["sportType"])){
 }
 //log in entrance
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
-    error_log("post email");
     $temp = checkLoginInfo($_POST["email"],$_POST["uPassword"]);
+    $emailStorage = $_POST["email"];
     if ($temp == 1) { //not the first time
-        $_SESSION["email"] = $_POST["email"];
         $_SESSION["password"] = $_POST["uPassword"];
+        setcookie(
+            "email",$emailStorage,time()+86400,"/"
+        );
+        error_log("email cookie is set".$_COOKIE["email"]);
         echo 1;
     } else if ($temp == 2) {//log in for the first time
-        $_SESSION["email"] = $_POST["email"];
+        setcookie(
+            "email",$emailStorage,time()+86400
+        );
         $_SESSION["password"] = $_POST["uPassword"];
         echo 2;
     } else if ($temp == 3) {
@@ -35,7 +41,10 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
 //sign up entrance
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) {
     $duplicatedUser = checkTempUser($_POST["email"]);
-    $_SESSION["email"] = $_POST["email"];
+    $emailStorage = $_POST["email"];
+    setcookie(
+        "email",$emailStorage,time()+86400,"/"
+    );
     $_SESSION["password"] = $_POST["uPassword"];
     if ($duplicatedUser) {
         $temp = insertIntoTempUser($_POST["email"],$_POST["uPassword"]);
@@ -47,13 +56,13 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) 
 } 
 
 //first step of first time logging in entrance
-if (isset($_SESSION["email"])&&isset($_SESSION["password"])&&isset($_POST["processUpdate"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
+if (isset($_COOKIE["email"])&&isset($_SESSION["password"])&&isset($_POST["processUpdate"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
     error_log("submitted");
-    $temp = submitUserInfo($_SESSION["email"],$_SESSION["password"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["processUpdate"]);
+    $temp = submitUserInfo($_COOKIE["email"],$_SESSION["password"],$_POST["username"], $_POST["phoneNum"],$_POST["gender"], $_POST["age"],$_POST["height"],$_POST["weight"],$_POST["processUpdate"]);
     if ($temp == 1) {
         echo 1;
     } else {
-        $temp2 = updateUserProcess($_SESSION["email"],$_POST["processUpdate"]);
+        $temp2 = updateUserProcess($_COOKIE["email"],$_POST["processUpdate"]);
         if ($temp2 == 2) {
             echo 2;
         } else {
@@ -67,7 +76,8 @@ if (isset($_POST["selectedList"])&&isset($_POST["processUpdate"])) {
 }
 
 if (isset($_POST["rp"])&&isset($_POST["position"])) {
-    $temp = selectByEmail($_SESSION["email"]);
+    error_log("yup");
+    $temp = selectByEmail($_COOKIE["email"]);
     if ($temp[0] == 2) {
         $_SESSION["uid"] = extractId($temp[1]);
         $createStatus = userPositionCreation($_SESSION["uid"],$_POST["position"], $_POST["rp"]);
@@ -180,7 +190,6 @@ function getSportType() {
         $result = $names[1];
         $sportNameStr = gettingSportType($result);
         return $sportNameStr;
-
     }
 }
 
@@ -194,7 +203,6 @@ function getPositionName($str) {
             return $temp[1];
         }else{
             $RPname = selectFromRP();
-            error_log($RPname[0]);
             $processedTemp = fuseOccuPos($temp[1], $RPname[1]);
             $listOfPosition .= $processedTemp;
         }

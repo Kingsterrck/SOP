@@ -57,15 +57,13 @@ $(document).ready(function(){
         })
         console.log(selectedSportList);
     })
-    $(".signUpUI[sequence='3'] form").submit(function(){
-        var listOfSelection = $(".eachOfTheSport");
+    $("#positionAndLevelSelector").submit(function(){
+        var listOfSelection = $(".indSportSelector");
         // listOfSelection.each(function (index,item){
         var submitData = "";
-        // })
-        for (i = 0;i<listOfSelection.length;i++) {
+        for (i = 0; i<listOfSelection.length;i++) {
             submitData = listOfSelection[i].serialize();
             console.log(submitData);
-            console.log("nop");
             $.ajax({
                 type: "POST",
                 url: "../../Controller/homeController.php",

@@ -7,30 +7,9 @@ require_once "../Model/user_game_model.php";
 require_once "../Model/squadModel.php";
 session_start();
 
-if (isset($_POST["createGameInitialize"])) {
-    $sportList = sportListRetrivial()[1];
-    echo createGamePrintSportOption($sportList);
-}
-//creating a new game w/ createGame.php
-if (isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["gameTime"])&&isset($_POST["rp"])&&isset($_POST["location"])&&isset($_POST["description"])) {
-    $insertStatus = newGameCreation($_POST["title"],$_POST["gameType"],$_POST["gameTime"],$_POST["rp"],$_POST["location"],$_POST["description"],$_SESSION["username"]);
-    if ($insertStatus[0] == 1) {
-        echo 0;//error
-    } else {
-        echo 1;//success
-    }
-}
 
-if(isset($_POST["createGameGameTypeRequest"])) {
-    $something = gameTypeRetrivial($_POST["createGameGameTypeRequest"]);
-    if ($something[0] == 2) {
-        $temp =  createGamePrintGameTypeOption($something[1]);
-        error_log($temp);
-        echo $temp;
-    } else {
-        echo $something[1];
-    }
-}
+
+
 //on squadSearch.php, get the list of sports
 if (isset($_POST["squadSearchGetSport"])) {
     $sportList = sportListRetrivial()[1];
@@ -41,11 +20,49 @@ if (isset($_POST["gameSearchSportNameSubmission"])) {
     return gameSearchStepOne($_POST["gameSearchSportNameSubmission"]);
 }
 
-//get info about a game in gameinfo.php
+// ----------
+// gameInfo.php
+
+//get basic info, like title, location, and creator
 if (isset($_POST["gameInfoGameIdSubmission"])) {
-    $infoList = gameInfoStepOne($_POST["gameInfoGameIdSubmission"]);
+    $gameId = $_POST["gameInfoGameIdSubmission"];
+    setcookie(
+        "gameInfoId",$gameId,time()+86400,"/"
+    );
+    $infoList = gameInfoStepOne($gameId);
     $temp = gameInfoExtract($infoList[1]);
     echo $temp;
+}
+
+//get information about sport, i.e. sport name, game name, maximum player
+if (isset($_POST["gameInfoGetSportAndType"])&&isset($_COOKIE["gameTypeId"])) {
+    echo gameInfoStepTwo($_COOKIE["gameTypeId"]);
+}
+
+//get information about players
+if (isset($_POST["gameInfoGetParticipatedUser"])) {
+    $playerList = getPlayerInfoByGameInfoId();
+}
+
+//gameInfo.php
+//----------------
+// createGame.php
+
+// get the list of available sports
+if (isset($_POST["createGameInitialize"])) {
+    $sportList = sportListRetrivial()[1];
+    echo createGamePrintSportOption($sportList);
+}
+
+//get game type based on sport type
+if(isset($_POST["createGameGameTypeRequest"])) {
+    $something = gameTypeRetrivial($_POST["createGameGameTypeRequest"]);
+    if ($something[0] == 2) {
+        $temp =  createGamePrintGameTypeOption($something[1]);
+        echo $temp;
+    } else {
+        echo $something[1];
+    }
 }
 
 //on createGame.php, insert the userid and the id of the game just created into user_game
@@ -67,16 +84,29 @@ if (isset($_POST["createGameInsertIntoUserGame"])) {
         error_log($createdGameIdList[1]);
     }
 }
-
-if (isset($_POST["gameInfoGetSportAndType"])&&isset($_SESSION["gameInfoGameTypeId"])) {
-    error_log("APEX LEGENDS SEASON 12");
-    echo gameInfoStepTwo($_SESSION["gameInfoGameTypeId"]);
+//creating a new game w/ createGame.php
+if (isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["gameTime"])&&isset($_POST["rp"])&&isset($_POST["location"])&&isset($_POST["description"])) {
+    $insertStatus = newGameCreation($_POST["title"],$_POST["gameType"],$_POST["gameTime"],$_POST["rp"],$_POST["location"],$_POST["description"],$_SESSION["username"]);
+    if ($insertStatus[0] == 1) {
+        echo 0;//error
+    } else {
+        echo 1;//success
+    }
 }
+
+// createGame.php
+//------------------
+// createSquad.php
 
 //creating a squad with createSquad.php
 if (isset($_POST["squadCreation"])&&isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["description"])) {
     echo creatingNewSquad($_SESSION["username"], $_POST["title"], $_POST["gameType"], $_POST["description"]);
 }
+
+
+// createSquad.php
+//------------------
+// functions
 
 
 function sportListRetrivial() {
@@ -85,12 +115,15 @@ function sportListRetrivial() {
 
 function newGameCreation($title, $sport, $gameTime, $rp, $location, $description, $creator) {
     $createGaMe = insertNewGame($title, $sport, $gameTime, $rp, $location, $description, $creator);
-    error_log($createGaMe[0]);
-    return $createGaMe;
+    if ($createGaMe[0] == 1) {
+        error_log("Creating a new game is failed, the server message is: ".$createGaMe[0]);
+    } else {
+        return $createGaMe;
+    }
 }
 
 function gameTypeRetrivial($sportTypeId) {
-    return selectBySportTypeId($sportTypeId);
+    return selectFromGameTypeByGameTypeId($sportTypeId);
 }
 
 function gameSearchStepOne($sport_name) {
@@ -108,7 +141,7 @@ function gameInfoStepOne($id) {
 }
 
 function gameInfoStepTwo($id) {
-    $sportInfo = selectBySportTypeId($id);
+    $sportInfo = selectFromGameTypeById($id);
     if ($sportInfo[0] == 2) {
         $holder = $sportInfo[1];
         $result = extractGameInfo($holder);
@@ -136,5 +169,14 @@ function creatingNewSquad($creator, $title, $game_type_id, $description) {
         return 1;
     } else {
         error_log($insertStatus[1]);
+    }
+}
+
+function getPlayerInfoByGameInfoId($gameInfoId) {
+    $userList = selectFromUserGameByGameInfoId($gameInfoId);
+    if ($userList[0] == 2) {
+        return $userList[1];
+    } else {
+        error_log($userList[1]);
     }
 }

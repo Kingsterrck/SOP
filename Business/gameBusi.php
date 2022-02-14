@@ -57,9 +57,9 @@ function gameInfoExtract($data) {
     $row = $data->fetch_array();
     $title = $row["title"];
     $game_type_id = $row["game_type_id"];
-    $_SESSION["gameInfoGameTypeId"] = $game_type_id;
-    error_log($game_type_id);
-    error_log($_SESSION["gameInfoGameTypeId"]);
+    setcookie(
+        "gameTypeId",$game_type_id,time()+86400,"/"
+    );
     $location = $row["location"];
     $description = $row["intro"];
     $creator = $row["creator"];

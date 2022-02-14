@@ -40,14 +40,16 @@ session_start();
                 <h1>选择你感兴趣的运动</h1>
                 <p>可以多选</p>
                 <div id="secondSportContainer">
-
                 </div>
                 <button type="button" class="loginBox nextStep" id="nextPage2">下一步</button>
         </div>
         <div class="signUpUI" sequence="3">
-            <form>
+            <form id="positionAndLevelSelector">
                 <h1>选择你的级别和位置</h1>
-                <div id="putItHere" class="shortLoginBoxContainer"></div>
+                <div id="putItHere" class="shortLoginBoxContainer">
+
+
+                </div>
                 <input type="submit" id="stepThreeSubmitButton" value="submit">;
             </form>
         </div>

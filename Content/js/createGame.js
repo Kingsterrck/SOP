@@ -21,8 +21,6 @@ $(document).ready(function(){
             }
         })
     })
-
-
     $("#gameCreacion").submit(function () {
         var targetDate = document.getElementById("timeInput").value;
         document.getElementById("timeInput").type="text";
@@ -47,12 +45,12 @@ $(document).ready(function(){
                                 alert("game successfully created, congrats");
                                 window.location.href="../../View/frontend/gameInfo.php?id="+targetId;
                             } else {
-                                alert("nope");
+                                alert("The server has added to the game to the database, but failed to receive its ID.");
                             }
                         }
                     })
                 } else {
-                    alert("nooooo it doesnt work");
+                    alert("Failed to insert the game information into databse");
                 }
             }
         })

@@ -1,6 +1,9 @@
 <?php
-session_start();
-if (isset($_SESSION["email"])) {
+session_start([
+    'cookie_lifetime' => 86400,
+]);
+error_log("mainpage cookie: ".$_COOKIE["email"]);
+if (isset($_COOKIE["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
     echo "<script>alert('sign up or log in to view the mainpage');window.location.href='sign_up.php'</script>";

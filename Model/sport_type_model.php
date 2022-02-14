@@ -39,7 +39,6 @@ function selectBySportId($id) {
         $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM sport_type WHERE ID = ?");
         $stmt->bind_param("i",$p_id);
         $p_id = $id;
-        error_log($stmt);
         $stmt->execute();
         if ($stmt->error) {
             return [1, $stmt->error];

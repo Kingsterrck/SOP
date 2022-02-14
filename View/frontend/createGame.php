@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["email"])) {
+if (isset($_COOKIE["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
     echo "<script>alert('Sign up or log in to create and join games');window.location.href='sign_up.php'</script>";

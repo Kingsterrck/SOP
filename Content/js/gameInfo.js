@@ -12,21 +12,34 @@ $(document).ready(function (){
             $("#locationDisplay").html(splitedData[2]);
             $("#introDisplay").html(splitedData[3]);
             $("#creatorDisplay").html(splitedData[4]);
-            $.ajax({
-                type: "POST",
-                url: "../../Controller/gameController.php",
-                data: "gameInfoGetSportAndType=true",
-                success: function (data) {
-                    var paipai = data.split("Ç");
-                    console.log(paipai);
-                    $("#sportDisplay").html(paipai[2]);
-                    $("#gameDisplay").html(paipai[1]);
-                    maxNumberOfPlayers = paipai[0];
-                }
-            });
+            getSportInfo();
         }
     })
+    function getSportInfo() {
+        $.ajax({
+            type: "POST",
+            url: "../../Controller/gameController.php",
+            data: "gameInfoGetSportAndType=true",
+            success: function (data) {
+                var paipai = data.split("Ç");
+                console.log(paipai);
+                $("#sportDisplay").html(paipai[2]);
+                $("#gameDisplay").html(paipai[1]);
+                maxNumberOfPlayers = paipai[0];
+                getParticipatedUser();
+            }
+        });
+    }
+    function getParticipatedUser() {
+        $.ajax({
+            type: "POST",
+            url: "../../Controller/gameController.php",
+            data: "gameInfoGetParticipatedUser=true",
+            success: function(data) {
 
+            }
+        })
+    }
     idk();
     window.addEventListener("resize",function (){
         idk();

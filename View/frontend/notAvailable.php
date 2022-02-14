@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["email"])) {
+if (isset($_COOKIE["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
     include_once "headerNLI_fsm.php";
@@ -42,7 +42,7 @@ if (isset($_SESSION["email"])) {
             <h1>This feature is still under development</h1>
             <p>future availability can be checked with <a href="https://github.com/Kingsterrck/SOP">GitHub page</a></p>
             <?php
-            if (isset($_SESSION["email"])) {
+            if (isset($_COOKIE["email"])) {
                 echo "<a href='loggedInMainpage.php'><div id='returnButton'>Return to mainpage</div></a>";
             } else {
                 echo "<a href='sign_up.php'><div id='returnButton'>Sign up</div></a>";
