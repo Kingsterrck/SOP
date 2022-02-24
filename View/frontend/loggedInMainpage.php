@@ -53,7 +53,7 @@ if (isset($_COOKIE["email"])) {
                     <div id="sportLabelContainer">
                         <h1>运动</h1>
                         <div id="allSportsLinkContainer">
-                            <a href="#">所有运动></a>
+                            <a href="all_sport.php">所有运动></a>
                         </div>
                     </div>
                     <div id="sportSelectContainer">
@@ -63,7 +63,7 @@ if (isset($_COOKIE["email"])) {
                             </div>
                         </a>
                         <a href="#">
-                            <div class="sportIcon" data="2">
+                            <div class="sportIcon">
                                 <h3>SPORTNAME2</h3>
                             </div>
                         </a>

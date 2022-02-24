@@ -25,13 +25,22 @@ if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
         setcookie(
             "email",$emailStorage,time()+86400,"/"
         );
-        error_log("email cookie is set".$_COOKIE["email"]);
+        error_log($_COOKIE["email"]);
+        $tempId = getUserIdByEmail($_COOKIE["email"]);
+        setcookie(
+            "uid",$tempId[1],time()+86400,"/"
+        );
+        error_log($_COOKIE["uid"]);
         echo 1;
     } else if ($temp == 2) {//log in for the first time
         setcookie(
-            "email",$emailStorage,time()+86400
+            "email",$emailStorage,time()+86400,"/"
         );
         $_SESSION["password"] = $_POST["uPassword"];
+        $tempId = getUserIdByEmail($_COOKIE["email"]);
+        setcookie(
+            "uid",$tempId,time()+86400,"/"
+        );
         echo 2;
     } else if ($temp == 3) {
         echo 3;
@@ -139,7 +148,7 @@ function checkTempUser($email, $password="¡") {
 }
 
 function checkLoginInfo($email,$uPassword) {
-    $checkStatus = selectUserByUsernameAndPassword($email, $uPassword);
+    $checkStatus = selectFromUserInfoByEmailAndPassword($email, $uPassword);
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) {
             //在userinfo里面有
@@ -217,4 +226,13 @@ function updateUserProcess($email, $processUpdate) {
 
 function userPositionCreation($userId, $game_pos_id, $level) {
     return insertIntoUserPosition($userId, $game_pos_id, $level);
+}
+
+function getUserIdByEmail($email) {
+    $tempId = selectByEmail($email);
+    if ($tempId[0] == 2) {
+        return extractId($tempId[1]);
+    } else {
+        error_log($tempId[1]);
+    }
 }

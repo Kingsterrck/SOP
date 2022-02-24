@@ -1,7 +1,7 @@
 <?php
 
 include_once "../config.php";
-function selectUserByUsernameAndPassword($email, $uPassword) {
+function selectFromUserInfoByEmailAndPassword($email, $uPassword) {
     $p_email = "";
     $p_uPassword = "";
     if ($GLOBALS["conn"]->connect_error) {
@@ -117,4 +117,7 @@ function updateTheProcess($email, $processUpdate) {
         }
     }
 }
+
+
+
 

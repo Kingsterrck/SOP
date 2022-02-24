@@ -5,10 +5,9 @@ require_once "../Business/gameBusi.php";
 require_once "../Model/gameTypeModel.php";
 require_once "../Model/user_game_model.php";
 require_once "../Model/squadModel.php";
+require_once "../Model/user_positionModel.php";
+require_once "../Model/comglomerateModel.php";
 session_start();
-
-
-
 
 //on squadSearch.php, get the list of sports
 if (isset($_POST["squadSearchGetSport"])) {
@@ -36,12 +35,34 @@ if (isset($_POST["gameInfoGameIdSubmission"])) {
 
 //get information about sport, i.e. sport name, game name, maximum player
 if (isset($_POST["gameInfoGetSportAndType"])&&isset($_COOKIE["gameTypeId"])) {
+
     echo gameInfoStepTwo($_COOKIE["gameTypeId"]);
 }
 
 //get information about players
+/*
+how this is going to work:
+1. get all the players in a game by gameInfoId
+2. for each of the players, search for all of their enrolled positions
+3. for each of the positions, check if its sportTypeId matches the the sportTypeId of the game
+*/
 if (isset($_POST["gameInfoGetParticipatedUser"])) {
-    $playerList = getPlayerInfoByGameInfoId();
+    $playerList = getPlayerInfoByGameInfoId($_COOKIE["gameInfoId"]);
+    $playerArray = playerListAppend($playerList);
+    foreach ($playerArray as $userId) {
+        $userPositionList = selectFromUserPositionByUserId($userId);
+        if ($userPositionList[0] == 2) {
+            aUsersPositionAppend($userPositionList[1]);
+            for ($i = 0;$i<count($GLOBALS["playerPositionArray"]);$i++) {
+                //each element in playerPositionArray corresponds to one in levelArray
+                $tempPosition = $GLOBALS["playerPositionArray"];
+                $occuPosList = selectFromOccupationPositionByPositionName($tempPosition);
+
+            }
+        } else {
+            error_log($userPositionList[1]);
+        }
+    }
 }
 
 //gameInfo.php

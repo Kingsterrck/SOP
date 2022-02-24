@@ -1,12 +1,12 @@
 <?php
+//this model is used to access more than one database table.
 
-include_once "../config.php";
-function selectOccupationPositionBySportId($sportTypeId) {
+function selectFromOccuPosAndSportTypeBySportTypeId($sportTypeId) {
     $p_sportTypeId = "";
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("select * from occupation_pos where sport_type_id = ?");
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM occupation_pos, sport_type WHERE occupation_pos.sport_type_id = sport_type.?");
         $stmt->bind_param("i",$p_sportTypeId);
         $p_sportTypeId = $sportTypeId;
         $stmt->execute();
@@ -17,14 +17,14 @@ function selectOccupationPositionBySportId($sportTypeId) {
         }
     }
 }
-function selectFromOccupationPositionByPositionName($positionName) {
-    $p_positionName = "";
+function selectFromOccuPosAndSportTypeByOccuPosId($occuPosId) {
+    $p_occuPosId = "";
     if ($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
     } else {
-        $stmt = $GLOBALS["conn"]->prepare("select * from occupation_pos where position_name = ?");
-        $stmt->bind_param("s",$p_positionName);
-        $p_positionName = $positionName;
+        $stmt = $GLOBALS["conn"]->prepare("SELECT * FROM occupation_pos, sport_type WHERE occupation_pos.sport_type_id = sport_type.ID AND occupation_pos.id = ?");
+        $stmt->bind_param("i",$p_occuPosId);
+        $p_occuPosId = $occuPosId;
         $stmt->execute();
         if ($stmt->error) {
             return [1, $stmt->error];

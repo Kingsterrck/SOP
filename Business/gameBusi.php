@@ -77,7 +77,35 @@ function extractGameInfo($data) {
         $GLOBALS["maxPlayer"] = $row["max_player"];
         $GLOBALS["gameTypeName"] = $row["type_name"];
         $GLOBALS["sportTypeId"] = $row["sport_type_id"];
+        $sportTypeIdStorage = $GLOBALS["sportTypeId"];
+        setcookie(
+            "sportTypeId",$sportTypeIdStorage,time()+86400,"/"
+        );
     }
     $result = $GLOBALS["maxPlayer"] . "Ç" . $GLOBALS["gameTypeName"] . "Ç";
     return $result;
+}
+function playerListAppend($data) {
+    $playerArray = array();
+    for ($i = 0;$i<$data->num_rows;$i++) {
+        $data->data_seek($i);
+        $row = $data->fetch_array();
+        $userId = $row["user_id"];
+        $playerArray[]=$userId;
+    }
+    return $playerArray;
+}
+function aUsersPositionAppend($data) {
+    $playerPositionArray = array();
+    $levelArray = array();
+    for ($i = 0;$i<$data->num_rows;$i++) {
+        $data->data_seek($i);
+        $row = $data->fetch_array();
+        $positionId = $row["occupation_Pos_id"];
+        $level = $row["level"];
+        $playerPositionArray[]=$positionId;
+        $levelArray[]=$level;
+    }
+    $returnArray = array($playerPositionArray,$levelArray);
+    return $returnArray;
 }

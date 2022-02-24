@@ -2,6 +2,7 @@
 require_once "../Model/user_info_model.php";
 require_once "../Business/mainpageBusiness.php";
 require_once "../Model/game_info_model.php";
+require_once "../Model/user_positionModel.php";
 session_set_cookie_params(86400);
 session_start();
 
@@ -33,19 +34,48 @@ if (isset($_POST["logout"])) {
     session_destroy();
     return 0;
 }
+
+//------------------
+// loggedInMainpage.php
+
 if (isset($_POST["getUser"])) {
     $returnedUsername = getUsername();
     $returnedUsername->data_seek(0);
     $row = $returnedUsername->fetch_array();
     $tempName = $row["username"];
-    $_SESSION["username"] = $tempName;
+    setcookie(
+        "username",$tempName,time()+86400, "/"
+    );
     echo $tempName;
 }
+
+if (isset($_POST["getUserSport"])) {
+    $positionList = selectFromUserPositionByUserIdLimited($_COOKIE["uid"]);
+    if ($positionList[0] == 2) { //it works
+        $actualPositionList = extractPlayerPosition($positionList[1]);
+        $GLOBALS["sportList"] = "";
+        for ($i = 0; $i < count($actualPositionList);$i++) {
+            $tempSportName = selectFromOccuPosAndSportTypeByOccuPosId($actualPositionList[$i]);
+            if ($tempName[0] == 2) {
+                sportNameExtract($tempSportName);
+            } else {
+                error_log($tempName[1]);
+            }
+        }
+        echo $GLOBALS["sportList"];
+    } else { //it doesn't work
+        error_log($positionList[1]);
+    }
+}
+
+//loggedInMainpage.php
 
 //in squadSearch.php, user searches the squads using the search box
 if (isset($_GET["searchForSquad"])) {
 
 }
+
+
 
 
 function gettingSpaceInfo($email) {
