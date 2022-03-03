@@ -7,7 +7,7 @@ $(document).ready(function(){
         success: function(data){
             $("#usernameDisplay").html("What's up, "+data);
             getUserSport();
-        }
+          }
     })
     function getUserSport() {
         $.ajax({

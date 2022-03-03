@@ -26,6 +26,9 @@
     padding: 10px 0;
     margin-bottom: 15px;
 }
+.playerDisplay>* {
+    margin-left: 10px;
+}
 .playerDisplay h4 {
     color: gold;
     margin-bottom: 5px;

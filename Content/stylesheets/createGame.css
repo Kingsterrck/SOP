@@ -40,3 +40,6 @@ button span {
 #gameTypeSelector {
     display: none;
 }
+.row>* {
+    padding-left: 20px;
+}
