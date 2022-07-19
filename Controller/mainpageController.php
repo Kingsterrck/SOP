@@ -3,6 +3,7 @@ require_once "../Model/user_info_model.php";
 require_once "../Business/mainpageBusiness.php";
 require_once "../Model/game_info_model.php";
 require_once "../Model/user_positionModel.php";
+require_once "../Model/comglomerateModel.php";
 session_set_cookie_params(86400);
 session_start();
 
@@ -50,19 +51,35 @@ if (isset($_POST["getUser"])) {
 }
 
 if (isset($_POST["getUserSport"])) {
-    $positionList = selectFromUserPositionByUserIdLimited($_COOKIE["uid"]);
+    $positionList = selectFromUserPositionByUserIdLimited($_COOKIE["uid"]); //this is supposed to return 3 rows
     if ($positionList[0] == 2) { //it works
-        $actualPositionList = extractPlayerPosition($positionList[1]);
-        $GLOBALS["sportList"] = "";
-        for ($i = 0; $i < count($actualPositionList);$i++) {
-            $tempSportName = selectFromOccuPosAndSportTypeByOccuPosId($actualPositionList[$i]);
-            if ($tempName[0] == 2) {
-                sportNameExtract($tempSportName);
+        $actualPositionList = extractPlayerPosition($positionList[1]); // a list
+        $sportNameList = array();
+        for ($i = 0; $i<count($actualPositionList); $i++) {
+            $currentPosition = $actualPositionList[$i];
+            $nameObject = selectFromOccuPosAndSportTypeByOccuPosId($currentPosition);
+            if ($nameObject[0] == 2) { //it works
+                $appendi = sportNameExtract($nameObject[1]);
+                $sportNameList[] = $appendi;
             } else {
-                error_log($tempName[1]);
+                error_log("mainpageController.php line 66 says ".$nameObject[1]);
             }
         }
-        echo $GLOBALS["sportList"];
+        $echoString = "";
+        for ($i = 0; $i < 3 ; $i++) {
+            $echoString.=$sportNameList[$i]."ç";
+        }
+        echo $echoString;
+//        $GLOBALS["sportList"] = "";
+//        for ($i = 0; $i < count($actualPositionList);$i++) {
+//            $tempSportName = selectFromOccuPosAndSportTypeByOccuPosId($actualPositionList[$i]);
+//            if ($tempName[0] == 2) {
+//                sportNameExtract($tempSportName);
+//            } else {
+//                error_log($tempName[1]);
+//            }
+//        }
+//        echo $GLOBALS["sportList"];
     } else { //it doesn't work
         error_log($positionList[1]);
     }
@@ -96,7 +113,7 @@ function getUsername() {
     $userId = $_COOKIE["email"];
     error_log("you're in 2");
     error_log($userId);
-    $username = selectByEmail($userId);
+    $username = selectFromUserinfoByEmail($userId);
     return $username[1];
 }
 

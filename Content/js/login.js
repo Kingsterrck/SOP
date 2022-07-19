@@ -8,13 +8,13 @@ $(document).ready(function (){
             data: status,
             success: function(data) {
                 console.log(data);
-                if (data == 1) {
+                if (data == 5) {
                     window.location.href="../../View/frontend/loggedInMainpage.php";
-                } else if (data == 2) {
-                    window.location.href="../../View/frontend/firstTimeLogin.php";
-                } else if (data == 3) {
+                }  else if (data == -1) {
                     alert("No records are found, go to sign up page");
                     window.location.href="../../View/frontend/sign_up.php";
+                } else {
+                    window.location.href="../../View/frontend/firstTimeLogin.php";
                 }
             }
         })

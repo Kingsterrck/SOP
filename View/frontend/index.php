@@ -66,7 +66,7 @@ if (isset($_COOKIE["email"])) {
             box-shadow:0 8px 16px 0 rgba(0,0,0,0.2);
         }
     </style>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script><!-- qjuery link-->
+    <script src="../../Content/js/jQuery%201.8.js"></script><!-- qjuery link-->
     </head>
     <body>
     <div id="maxBox">

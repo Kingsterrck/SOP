@@ -8,7 +8,7 @@ include_once "headerNLI_fsm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up | SOP</title>
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/get_in.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script>
 
     </script>

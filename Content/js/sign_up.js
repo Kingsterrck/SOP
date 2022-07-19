@@ -24,16 +24,26 @@ $(document).ready(function(){
             url: "../../Controller/homeController.php",
             data: data,
             success: function(data){
-                var splitedMsg = data.split("¿");
-                console.log(splitedMsg);
-                if (splitedMsg[0] == 1) { //success
-                    alert( "Data Saved: " + splitedMsg[1] );
+                if (data == 1) {
+                    alert("Account successfully created");
                     changeUI();
-                } else if (splitedMsg[0] == 2) { //replicated
-                    alert(splitedMsg[1]);
-                } else if(splitedMsg[0] == 3){
-                    window.location.href="../../View/frontend/404.php"
+                } else if (data == 2) {
+                    alert("This email has been registered, go to login page or change an email");
+                    window.location.href="../../View/frontend/login.php";
+                } else {
+                    alert("database or network error, wait for a while and retry");
                 }
+
+                // var splitedMsg = data.split("¿");
+                // console.log(splitedMsg);
+                // if (splitedMsg[0] == 1) { //success
+                //     alert( "Data Saved: " + splitedMsg[1] );
+                //     changeUI();
+                // } else if (splitedMsg[0] == 2) { //replicated
+                //     alert(splitedMsg[1]);
+                // } else if(splitedMsg[0] == 3){
+                //     window.location.href="../../View/frontend/404.php"
+                // }
 
 
             }

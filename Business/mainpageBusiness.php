@@ -28,5 +28,6 @@ function sportNameExtract($data) {
     $data->data_seek(0);
     $row = $data->fetch_array();
     $tempSport = $row["type_name"];
-    $GLOBALS["sportList"].= $tempSport."ç";
+    return $tempSport;
 }
+

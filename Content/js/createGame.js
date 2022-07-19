@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    // get all the sports
     $.ajax({
         type: "POST",
         data: "createGameInitialize=1",
@@ -7,6 +9,7 @@ $(document).ready(function(){
             $("#sportSelectOption").html(data);
         }
     })
+
     $("#sportSelectOption").change(function(){
         var sportIden = document.getElementById("sportSelectOption").value;
         console.log(sportIden);
@@ -21,6 +24,7 @@ $(document).ready(function(){
             }
         })
     })
+
     $("#gameCreacion").submit(function () {
         var targetDate = document.getElementById("timeInput").value;
         document.getElementById("timeInput").type="text";

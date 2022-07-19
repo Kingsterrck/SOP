@@ -1,6 +1,11 @@
 <?php
 include_once "headerNLI_fsm.php";
 session_start();
+if (!isset($_COOKIE["email"])) {
+    echo "<script>alert('YOU ARE NOT PERMITTED TO VIEW THIS PAGE');
+    window.location.href='login.php';
+    </script>";
+}
 ?>
 <!DOCTYPE html>
 <head>
@@ -12,6 +17,10 @@ session_start();
     <script src="../../Content/js/jQuery%201.8.js"></script>
 </head>
 <body>
+<?php
+$tempNum = $_SESSION["process"];
+echo "<input id='numOfProcess' hidden value='$tempNum'>";
+?>
     <div id="mainBox">
         <div class="signUpUI" sequence="1">
             <form id="firstStepForm">
@@ -21,13 +30,13 @@ session_start();
                 <input name="username" type="text" class="loginBox" placeholder="用户名">
                 <input name="phoneNum" type="number" class="loginBox" placeholder="手机号码">
                 <div class="shortLoginBoxContainer">
-                        <select class="shortLoginBox" name="gender" id="genderSelect">
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Non-binary</option>
-                            <option value="4">Not to tell</option>
-                        </select>
-                        <input name="age" type="number" class="shortLoginBox" placeholder="年龄"  min="1" max="100">
+                    <select class="shortLoginBox" name="gender" id="genderSelect">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Non-binary</option>
+                        <option value="4">Not to tell</option>
+                    </select>
+                    <input name="age" type="number" class="shortLoginBox" placeholder="年龄"  min="1" max="100">
                 </div>
                 <div class="shortLoginBoxContainer">
                     <input name="height" type="number" class="shortLoginBox" placeholder="身高 in centimeters" min="100" max="250">
