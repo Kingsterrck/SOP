@@ -7,7 +7,7 @@ $(document).ready(function(){
         success: function(data){
             $("#usernameDisplay").html("What's up, "+data);
             getUserSport();
-        }
+          }
     })
     function getUserSport() {
         $.ajax({
@@ -15,8 +15,10 @@ $(document).ready(function(){
             url: "../../Controller/mainpageController.php",
             data: "getUserSport=1",
             success: function(data) {
-                console.log(data);
                 var sportList = data.split("ç");
+                for (i = 0; i < sportList.length;i++) {
+                    console.log(sportList[i]);
+                }
             }
         })
     }

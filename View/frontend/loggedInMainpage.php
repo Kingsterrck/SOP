@@ -2,7 +2,8 @@
 session_start([
     'cookie_lifetime' => 86400,
 ]);
-error_log("mainpage cookie: ".$_COOKIE["email"]);
+error_log("mainpage email cookie: ".$_COOKIE["email"]);
+error_log("mainpage uid cookie: ".$_COOKIE["uid"]);
 if (isset($_COOKIE["email"])) {
     include_once "header_fsm_dropdown.php";
 } else {
@@ -24,7 +25,7 @@ if (isset($_COOKIE["email"])) {
         <link rel="icon" href="../../Content/imgsrc/icons/pageIcon.png">
         <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/mainpage.css">
         <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/loggedInMainpage.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="../../Content/js/jQuery%201.8.js"></script>
     </head>
     <body>
             <div id="maxContainer">
@@ -36,7 +37,7 @@ if (isset($_COOKIE["email"])) {
                             <div id="takeATest" class="sportIcon">
                                 <h3>测试评分</h3>
                             </div>
-                        </a>
+                          </a>
                         <a href="#">
                             <div id="myGames" class="sportIcon">
                                 <h3>我的比赛</h3>

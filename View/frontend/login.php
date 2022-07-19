@@ -11,7 +11,7 @@ include_once "footer.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/login.css">
     <link rel="stylesheet" type="text/css" href="../../Content/stylesheets/get_in.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="../../Content/js/jQuery%201.8.js"></script>
 </head>
 <body>
     <div class="signUpUI">

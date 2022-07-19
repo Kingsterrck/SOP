@@ -82,7 +82,7 @@ function spaceGetInfo($email) {
     }
 }
 
-function selectByEmail($email) {
+function selectFromUserinfoByEmail($email) {
     $p_email = "";
     if($GLOBALS["conn"]->connect_error) {
         die("failed" . $GLOBALS["conn"]->connect_error);
@@ -118,6 +118,29 @@ function updateTheProcess($email, $processUpdate) {
     }
 }
 
+function insertProcess0intoUserinfo($email, $uPassword) {
+    date_default_timezone_set('PRC');
+    $p_email = "";
+    $p_uPassword = "";
+    $p_process = 0;
+    $p_createdTime = date("Y-m-d H:i:s");
+    $p_updatedTime = date("Y-m-d H:i:s");
+    if ($GLOBALS["conn"]->connect_error) {
+        die("failed".$GLOBALS["conn"]->connect_error);
+    } else {
+        $stmt = $GLOBALS["conn"]->prepare("INSERT INTO userinfo(email,u_password,process,createdTime,updatedTime) VALUES(?,?,?,?,?)");
+        $stmt->bind_param("ssiss",$p_email,$p_uPassword,$p_process,$p_createdTime,$p_updatedTime);
+        $p_email = $email;
+        $p_uPassword = $uPassword;
 
+        $stmt->execute();
+
+        if ($stmt->error) {
+            return [1,$stmt->error];
+        } else {
+            return [2,$stmt->affected_rows];
+        }
+    }
+}
 
 

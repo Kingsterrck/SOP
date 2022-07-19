@@ -34,8 +34,8 @@
         <div id="headLeft">
             <ul>
                 <li class="headItems" id="headLeftItem1"><a href="all_sport.php">运动</a></li>
-                <li class="headItems"><a href="squadSearch.php">战队</a></li>
-                <li class="headItems"><a href="notAvailable.php">比赛</a></li>
+                <li class="headItems"><a href="notAvailable.php">战队</a></li>
+                <li class="headItems"><a href="gameSearch.php">比赛</a></li>
                 <li class="headItems"><a href="notAvailable.php">直播</a></li>
                 <li class="headItems"><a href="notAvailable.php">论坛</a></li>
                 <li class="headItems"><a href="notAvailable.php">场馆</a></li>
@@ -69,8 +69,8 @@
     <!-- Overlay content -->
     <div id="menuContent">
         <a href="all_sport.php">运动</a>
-        <a href="squadSearch.php">战队</a>
-        <a href="notAvailable.php">比赛</a>
+        <a href="notAvailable.php">战队</a>
+        <a href="gameSearch.php">比赛</a>
         <a href="notAvailable.php">直播</a>
         <a href="notAvailable.php">论坛</a>
         <a href="notAvailable.php">场馆</a>

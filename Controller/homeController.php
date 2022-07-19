@@ -13,56 +13,58 @@ session_start([
 if (isset($_POST["author"])&&isset($_POST["title"])&&isset($_POST["category"])&&isset($_POST["year"])&&isset($_POST["isbn"])) {
     return insertIntoClassics($_POST["author"],$_POST["title"],$_POST["category"],$_POST["year"],$_POST["isbn"]);
 }
+
+//if ($_FILES["file"]["error"] > 0) {
+//    echo "error: ".$_FILES["file"]["error"];
+//} else {
+//    $_FILES["file"]["name"] = "b.txt";
+//    move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/".$_FILES["file"]["name"]);
+//    echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+//    echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+//    echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+//    echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"] . "<br>";
+//}
+
 if(isset($_POST["sportType"])){
     echo getSportType();
 }
 //log in entrance
 if (isset($_POST["email"])&&isset($_POST["uPassword"])&&isset($_POST["type"])){
     $temp = checkLoginInfo($_POST["email"],$_POST["uPassword"]);
-    $emailStorage = $_POST["email"];
-    if ($temp == 1) { //not the first time
-        $_SESSION["password"] = $_POST["uPassword"];
-        setcookie(
-            "email",$emailStorage,time()+86400,"/"
-        );
-        error_log($_COOKIE["email"]);
-        $tempId = getUserIdByEmail($_COOKIE["email"]);
-        setcookie(
-            "uid",$tempId[1],time()+86400,"/"
-        );
-        error_log($_COOKIE["uid"]);
-        echo 1;
-    } else if ($temp == 2) {//log in for the first time
-        setcookie(
-            "email",$emailStorage,time()+86400,"/"
-        );
-        $_SESSION["password"] = $_POST["uPassword"];
-        $tempId = getUserIdByEmail($_COOKIE["email"]);
-        setcookie(
-            "uid",$tempId,time()+86400,"/"
-        );
-        echo 2;
-    } else if ($temp == 3) {
-        echo 3;
-    }
-}
-
-//sign up entrance
-if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) {
-    $duplicatedUser = checkTempUser($_POST["email"]);
+    $_SESSION["password"] = $_POST["uPassword"]; // storing password into $_SESSION
     $emailStorage = $_POST["email"];
     setcookie(
         "email",$emailStorage,time()+86400,"/"
     );
-    $_SESSION["password"] = $_POST["uPassword"];
-    if ($duplicatedUser) {
-        $temp = insertIntoTempUser($_POST["email"],$_POST["uPassword"]);
+    error_log("log in email check:".$_COOKIE["email"]);
+    $_SESSION["process"] = $temp;
+    echo $temp;
+}
 
-        echo "1¿$temp";
-    } else {
-        echo "2¿this email has been registered, go to login page";
+//sign up entrance
+if (isset($_POST["email"])&&isset($_POST["uPassword"])&&!isset($_POST["type"])) {
+    $duplicatedUser = ifRegistered($_POST["email"]);
+    if ($duplicatedUser) { // user present
+        echo 2;
+    } else { // user not present
+
+        //set $_COOKIE["email"], $_SESSION["password"]
+        $emailStorage = $_POST["email"];
+        setcookie(
+            "email",$emailStorage,time()+86400,"/"
+        );
+        $_SESSION["password"] = $_POST["uPassword"];
+
+        $temp = insertProcess0intoUserinfo($_POST["email"],$_POST["uPassword"]);
+
+        if ($temp[0] == 2) {
+            echo 1;
+        } else {
+            error_log($temp[1]);
+            echo 3;
+        }
     }
-} 
+}
 
 //first step of first time logging in entrance
 if (isset($_COOKIE["email"])&&isset($_SESSION["password"])&&isset($_POST["processUpdate"])&&isset($_POST["username"])&&isset($_POST["phoneNum"])&&isset($_POST["gender"])&&isset($_POST["age"])&&isset($_POST["height"])&&isset($_POST["weight"])) {
@@ -86,7 +88,7 @@ if (isset($_POST["selectedList"])&&isset($_POST["processUpdate"])) {
 
 if (isset($_POST["rp"])&&isset($_POST["position"])) {
     error_log("yup");
-    $temp = selectByEmail($_COOKIE["email"]);
+    $temp = selectFromUserinfoByEmail($_COOKIE["email"]);
     if ($temp[0] == 2) {
         $_SESSION["uid"] = extractId($temp[1]);
         $createStatus = userPositionCreation($_SESSION["uid"],$_POST["position"], $_POST["rp"]);
@@ -149,24 +151,24 @@ function checkTempUser($email, $password="¡") {
 
 function checkLoginInfo($email,$uPassword) {
     $checkStatus = selectFromUserInfoByEmailAndPassword($email, $uPassword);
+    // first item is int, second is object
     if ($checkStatus[0] == 2) {
         if ($checkStatus[1]->num_rows >= 1) {
-            //在userinfo里面有
-
-//            put user id into $_SESSION
-            $checkStatus[1]->data_seek(0);
-            $row = $checkStatus[1]->fetch_array();
-            $_SESSION["uid"] = $row["ID"];
-            error_log("session uid: ".$_SESSION["uid"]);
-            return 1;
+            //user present in *userinfo*, login credentials are valid
+            $mysqlObject = $checkStatus[1];
+            $mysqlObject->data_seek(0);
+            $row = $mysqlObject->fetch_array();
+            $tempId = $row["ID"];
+            $process = $row["process"];
+            error_log("checkLoginInfo ID check:".$tempId);
+            setcookie(
+                "uid",$tempId,time()+86400,"/"
+            );
+            error_log("cookie uid: ".$_COOKIE["uid"]);
+            return $process;
         } else {
             //没有
-            $checkTUStatus = checkTempUser($email, $uPassword);
-            if ($checkTUStatus === false) { //is in tempuser
-                return 2;
-            } else { //is not in tempuser
-                return 3;
-            }
+            return -1;
         }
     } else {
         return $checkStatus[1];
@@ -229,10 +231,23 @@ function userPositionCreation($userId, $game_pos_id, $level) {
 }
 
 function getUserIdByEmail($email) {
-    $tempId = selectByEmail($email);
-    if ($tempId[0] == 2) {
+    $tempId = selectFromUserinfoByEmail($email);
+    if ($tempId[0] == 2) { // works
         return extractId($tempId[1]);
     } else {
         error_log($tempId[1]);
+    }
+}
+
+function ifRegistered($email) { // check if an email is present in userinfo, return true if present
+    $registeredStat = selectFromUserinfoByEmail($email);
+    if ($registeredStat[0] == 2) {
+        if ($registeredStat[1]->num_rows>=1) {
+            return true; //user present
+        } else {
+            return false; // user not present
+        }
+    } else {
+        error_log($registeredStat[1]);
     }
 }

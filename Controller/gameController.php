@@ -88,14 +88,14 @@ if(isset($_POST["createGameGameTypeRequest"])) {
 
 //on createGame.php, insert the userid and the id of the game just created into user_game
 if (isset($_POST["createGameInsertIntoUserGame"])) {
-    error_log("session username: ".$_SESSION["username"]);
-    $createdGameIdList = getGameIdByCreatorAndDate($_SESSION["username"]);
+    error_log("session username: ".$_COOKIE["username"]);
+    $createdGameIdList = getGameIdByCreatorAndDate($_COOKIE["username"]);
     if ($createdGameIdList[0] == 2) {
         $createdGameIdList[1]->data_seek(0);
         $row = $createdGameIdList[1]->fetch_array();
         $createdGameId = $row["id"];
         $_SESSION["linkGameId"] = $createdGameId;
-        $ifInsert = InsertIntoUserGame($_SESSION["uid"], $createdGameId);
+        $ifInsert = InsertIntoUserGame($_COOKIE["uid"], $createdGameId);
         if ($ifInsert[0] == 2) {
             echo "1Ç".$_SESSION["linkGameId"];
         } else {
@@ -107,7 +107,8 @@ if (isset($_POST["createGameInsertIntoUserGame"])) {
 }
 //creating a new game w/ createGame.php
 if (isset($_POST["title"])&&isset($_POST["gameType"])&&isset($_POST["gameTime"])&&isset($_POST["rp"])&&isset($_POST["location"])&&isset($_POST["description"])) {
-    $insertStatus = newGameCreation($_POST["title"],$_POST["gameType"],$_POST["gameTime"],$_POST["rp"],$_POST["location"],$_POST["description"],$_SESSION["username"]);
+    error_log("cookie username: ".$_COOKIE["username"]);
+    $insertStatus = newGameCreation($_POST["title"],$_POST["gameType"],$_POST["gameTime"],$_POST["rp"],$_POST["location"],$_POST["description"],$_COOKIE["username"]);
     if ($insertStatus[0] == 1) {
         echo 0;//error
     } else {

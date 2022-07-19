@@ -1,8 +1,10 @@
 var dataIdList ="";
 const selectedSportList = [];
 $(document).ready(function(){
+    var numOfSteps = $("#numOfProcess").val();
     $(".signUpUI").hide();
-    $(".signUpUI[sequence='1']").show();
+
+    $(".signUpUI[sequence=numOfSteps-1]").show();
     $.ajax( {
         type: "POST",
         url: "../../Controller/homeController.php",

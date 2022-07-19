@@ -74,6 +74,7 @@ function insertNewGame($title, $gameType, $gameTime, $rp, $location, $descriptio
         $p_location = $location;
         $p_description = $description;
         $p_creator = $creator;
+        error_log($creator);
         $stmt->execute();
         if ($stmt->error) {
             return [1, $stmt->error];

@@ -48,6 +48,7 @@ include_once "footer.php";
             <a href="#">
                 <button type="submit"><span>创建</span></button>
             </a>
+<!--            TODO:ADD A CONFIRM INTERFACE OF CREATING A GAME -->
         </form>
     </div>
 
